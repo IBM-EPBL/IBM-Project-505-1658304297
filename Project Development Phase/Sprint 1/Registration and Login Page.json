@@ -1,0 +1,2389 @@
+[
+    {
+        "id": "808209af666702c3",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d61dfef44a6654a1",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "Login Button to Login Page",
+        "func": "if(msg.payload==true){\nmsg.payload={\"tab\":\"Login\"}\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1360,
+        "y": 220,
+        "wires": [
+            [
+                "8a9a4c12aa0fdf44"
+            ]
+        ]
+    },
+    {
+        "id": "bf2831fd7411d3ca",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "Register Button to Register Page",
+        "func": "if(msg.payload==true){\nmsg.payload={\"tab\":\"Register\"}\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1360,
+        "y": 120,
+        "wires": [
+            [
+                "8a9a4c12aa0fdf44"
+            ]
+        ]
+    },
+    {
+        "id": "315727ad3fc9fad1",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "Register Button to OTP Page",
+        "func": "if(msg.payload==true && global.get(\"passwordvalid\")==true && global.get(\"username\")!=\"\" && ( global.get(\"email\")!=\"\" || global.get(\"phone_number_valid\")!=\"\")){\nmsg.payload={\"tab\":\"OTP\"}\n\n}\nglobal.set(\"registertoOTP\",msg.payload.tab)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1460,
+        "y": 1180,
+        "wires": [
+            [
+                "8a9a4c12aa0fdf44"
+            ]
+        ]
+    },
+    {
+        "id": "959e375f86864e5d",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "Login Button to Dashboard Page",
+        "func": "if(msg.payload==true && global.get(\"logincondition\")==\"Login Done\"){\nmsg.payload={\"tab\":\"Dashboard\"}\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1410,
+        "y": 2620,
+        "wires": [
+            [
+                "8a9a4c12aa0fdf44"
+            ]
+        ]
+    },
+    {
+        "id": "1461f26ca6c9d764",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "Password Validation",
+        "func": "if(msg.payload.valid==false)\nmsg.payload={\"Error\":\"Password must have atleast 1 number,1 letter,1 uppercase,1 lowercase,no spaces, 1 symbol and must have a minimum length 8 characters \"}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 980,
+        "wires": [
+            [
+                "9222f145f9295051"
+            ]
+        ]
+    },
+    {
+        "id": "ef2599668a275271",
+        "type": "ui_button",
+        "z": "808209af666702c3",
+        "name": "",
+        "group": "9738ddbf1cb6ba73",
+        "order": 3,
+        "width": 8,
+        "height": 1,
+        "passthru": false,
+        "label": "Register",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "register",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 280,
+        "y": 120,
+        "wires": [
+            [
+                "bf2831fd7411d3ca"
+            ]
+        ]
+    },
+    {
+        "id": "bdbe63b9634b09f5",
+        "type": "ui_button",
+        "z": "808209af666702c3",
+        "name": "",
+        "group": "9738ddbf1cb6ba73",
+        "order": 7,
+        "width": 8,
+        "height": 1,
+        "passthru": false,
+        "label": "Login",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "login",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 270,
+        "y": 220,
+        "wires": [
+            [
+                "d61dfef44a6654a1"
+            ]
+        ]
+    },
+    {
+        "id": "407ff4cf3176ca7a",
+        "type": "ui_button",
+        "z": "808209af666702c3",
+        "name": "",
+        "group": "0d8d36b80172a1af",
+        "order": 11,
+        "width": 7,
+        "height": 1,
+        "passthru": false,
+        "label": "Login",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "login",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1150,
+        "y": 2780,
+        "wires": [
+            [
+                "959e375f86864e5d"
+            ]
+        ]
+    },
+    {
+        "id": "1a94a9163350a295",
+        "type": "ui_button",
+        "z": "808209af666702c3",
+        "name": "",
+        "group": "952cc8d0efe668b6",
+        "order": 17,
+        "width": 8,
+        "height": 1,
+        "passthru": false,
+        "label": "Register",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "register",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 940,
+        "y": 1180,
+        "wires": [
+            [
+                "315727ad3fc9fad1"
+            ]
+        ]
+    },
+    {
+        "id": "a5685e6b237d1137",
+        "type": "ui_text_input",
+        "z": "808209af666702c3",
+        "name": "User Name",
+        "label": "User Name *",
+        "tooltip": "",
+        "group": "952cc8d0efe668b6",
+        "order": 2,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 290,
+        "y": 440,
+        "wires": [
+            [
+                "125c272d88c9780d",
+                "acc65563d8a6c02d"
+            ]
+        ]
+    },
+    {
+        "id": "08e878e824504822",
+        "type": "ui_text_input",
+        "z": "808209af666702c3",
+        "name": "Email",
+        "label": "Email #",
+        "tooltip": "",
+        "group": "952cc8d0efe668b6",
+        "order": 6,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "email",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 270,
+        "y": 600,
+        "wires": [
+            [
+                "c257bc4b47deac38"
+            ]
+        ]
+    },
+    {
+        "id": "bafca88cd43df81d",
+        "type": "ui_text_input",
+        "z": "808209af666702c3",
+        "name": "",
+        "label": "Username",
+        "tooltip": "",
+        "group": "0d8d36b80172a1af",
+        "order": 2,
+        "width": 9,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 270,
+        "y": 2560,
+        "wires": [
+            [
+                "10259917d6d3d4f8"
+            ]
+        ]
+    },
+    {
+        "id": "fcd76bfdf71d8084",
+        "type": "ui_text_input",
+        "z": "808209af666702c3",
+        "name": "",
+        "label": "Password",
+        "tooltip": "",
+        "group": "0d8d36b80172a1af",
+        "order": 6,
+        "width": 9,
+        "height": 1,
+        "passthru": true,
+        "mode": "password",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 260,
+        "y": 2720,
+        "wires": [
+            [
+                "07cfd11b88d313d5"
+            ]
+        ]
+    },
+    {
+        "id": "86a308bffe3416db",
+        "type": "ui_text_input",
+        "z": "808209af666702c3",
+        "name": "Phone Number",
+        "label": "Phone Number (+xx-xxxxxxxxxx)  #",
+        "tooltip": "",
+        "group": "952cc8d0efe668b6",
+        "order": 9,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "tel",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 300,
+        "y": 820,
+        "wires": [
+            [
+                "bf797f60b35f1853",
+                "b97281a3bf21795e"
+            ]
+        ]
+    },
+    {
+        "id": "56dddbb2cb8ac3a5",
+        "type": "ui_text_input",
+        "z": "808209af666702c3",
+        "name": "Password",
+        "label": "Password *",
+        "tooltip": "",
+        "group": "952cc8d0efe668b6",
+        "order": 13,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "password",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 260,
+        "y": 1160,
+        "wires": [
+            [
+                "1a94a9163350a295",
+                "adeb57d7fdc3f174",
+                "8583d9729f5cb9fc"
+            ]
+        ]
+    },
+    {
+        "id": "9222f145f9295051",
+        "type": "ui_text",
+        "z": "808209af666702c3",
+        "group": "952cc8d0efe668b6",
+        "order": 19,
+        "width": 0,
+        "height": 0,
+        "name": "Password Validation",
+        "label": "",
+        "format": "{{msg.payload.Error}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 1220,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "8a9a4c12aa0fdf44",
+        "type": "ui_ui_control",
+        "z": "808209af666702c3",
+        "name": "Dashboard Tabs Control",
+        "events": "change",
+        "x": 2530,
+        "y": 1320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "adeb57d7fdc3f174",
+        "type": "password-validator",
+        "z": "808209af666702c3",
+        "property": "payload",
+        "name": "Password Checker",
+        "digits": "1",
+        "letters": "1",
+        "lowercase": "1",
+        "uppercase": "1",
+        "symbols": "1",
+        "spaces": "0",
+        "min": "8",
+        "max": "",
+        "x": 590,
+        "y": 1060,
+        "wires": [
+            [
+                "1461f26ca6c9d764",
+                "35827e5c017f7ee0"
+            ]
+        ]
+    },
+    {
+        "id": "d956d3c3ef32c590",
+        "type": "otpauth",
+        "z": "808209af666702c3",
+        "name": "OTP Generation 1",
+        "otptype": "totp",
+        "x": 650,
+        "y": 1700,
+        "wires": [
+            [
+                "1e37155a2d873d6e",
+                "bcafe9271a51345b"
+            ]
+        ]
+    },
+    {
+        "id": "55a14be33074630d",
+        "type": "ui_text_input",
+        "z": "808209af666702c3",
+        "name": "",
+        "label": "OTP",
+        "tooltip": "",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 12,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 270,
+        "y": 2120,
+        "wires": [
+            [
+                "0699a7599e2ae249"
+            ]
+        ]
+    },
+    {
+        "id": "acfe751db09cac55",
+        "type": "ui_text",
+        "z": "808209af666702c3",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 9,
+        "width": 10,
+        "height": 1,
+        "name": "OTP entry",
+        "label": "Enter OTP",
+        "format": "",
+        "layout": "col-center",
+        "className": "",
+        "x": 570,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "8cd6e52ca903978d",
+        "type": "ui_text",
+        "z": "808209af666702c3",
+        "group": "94b5423573981139",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Welcome",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 300,
+        "y": 4780,
+        "wires": []
+    },
+    {
+        "id": "0699a7599e2ae249",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "OTP Verification",
+        "func": "if(global.get(\"OTP\")== msg.payload){\nmsg.payload=\"OTP has been verified\"\n}\nelse{\nmsg.payload=\"OTP doesn't match\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 2120,
+        "wires": [
+            [
+                "a0d74e1e5ebee43e",
+                "005cc1735a2651b6"
+            ]
+        ]
+    },
+    {
+        "id": "1e37155a2d873d6e",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "OTP Payload",
+        "func": "global.set(\"OTP\",msg.payload)\nmsg.payload={\"OTP\":global.get(\"OTP\")}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 1700,
+        "wires": [
+            [
+                "6be79f320c372ce7"
+            ]
+        ]
+    },
+    {
+        "id": "a0d74e1e5ebee43e",
+        "type": "ui_text",
+        "z": "808209af666702c3",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 15,
+        "width": 10,
+        "height": 1,
+        "name": "OTP Verification ",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 900,
+        "y": 2180,
+        "wires": []
+    },
+    {
+        "id": "2a7c0284b27b8e67",
+        "type": "ui_button",
+        "z": "808209af666702c3",
+        "name": "",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 19,
+        "width": 8,
+        "height": 1,
+        "passthru": false,
+        "label": "Login",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "login",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1090,
+        "y": 2220,
+        "wires": [
+            [
+                "182af557e95a5024"
+            ]
+        ]
+    },
+    {
+        "id": "182af557e95a5024",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "OTP Button to Login Page",
+        "func": "if(msg.payload==true && global.get(\"OTPverification\")==\"OTP has been verified\"){\nmsg.payload={\"tab\":\"Login\"}\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1390,
+        "y": 2120,
+        "wires": [
+            [
+                "8a9a4c12aa0fdf44"
+            ]
+        ]
+    },
+    {
+        "id": "10259917d6d3d4f8",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "Username Match",
+        "func": "if(msg.payload==global.get(\"username\")){\nmsg.payload=\"Username matches\"\nvar usernamematch=true\n}\nelse{\nmsg.payload=\"Username doesn't match\"\nusernamematch=false\n}\nglobal.set(\"usernamematch\",usernamematch)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 2560,
+        "wires": [
+            [
+                "de2773864c8e805b",
+                "fb1c60a34fb499fe"
+            ]
+        ]
+    },
+    {
+        "id": "07cfd11b88d313d5",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "Password Match",
+        "func": "if(msg.payload==global.get(\"password\")){\nmsg.payload=\"Password matches\"\nvar passwordmatch=true\n}\nelse{\nmsg.payload=\"Password doesn't match\"\npasswordmatch=false\n}\nglobal.set(\"passwordmatch\",passwordmatch)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 2720,
+        "wires": [
+            [
+                "eab1693f1bf99cc0",
+                "fb1c60a34fb499fe"
+            ]
+        ]
+    },
+    {
+        "id": "eab1693f1bf99cc0",
+        "type": "ui_text",
+        "z": "808209af666702c3",
+        "group": "0d8d36b80172a1af",
+        "order": 7,
+        "width": 5,
+        "height": 1,
+        "name": "Password Match",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 740,
+        "y": 2840,
+        "wires": []
+    },
+    {
+        "id": "de2773864c8e805b",
+        "type": "ui_text",
+        "z": "808209af666702c3",
+        "group": "0d8d36b80172a1af",
+        "order": 3,
+        "width": 5,
+        "height": 1,
+        "name": "Username Match",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 810,
+        "y": 2460,
+        "wires": []
+    },
+    {
+        "id": "bcafe9271a51345b",
+        "type": "debug",
+        "z": "808209af666702c3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 1800,
+        "wires": []
+    },
+    {
+        "id": "23135bbb944de934",
+        "type": "e-mail",
+        "z": "808209af666702c3",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "tls": true,
+        "name": "",
+        "dname": "OTP Mail",
+        "x": 1680,
+        "y": 1820,
+        "wires": []
+    },
+    {
+        "id": "0db0509de38f1b47",
+        "type": "twilio out",
+        "z": "808209af666702c3",
+        "twilio": "583f978ccd9248eb",
+        "twilioType": "sms",
+        "url": "",
+        "number": "",
+        "name": "OTP SMS",
+        "x": 1680,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "d8c2c8f165a00f0d",
+        "type": "comment",
+        "z": "808209af666702c3",
+        "name": "Home",
+        "info": "",
+        "x": 90,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "125c272d88c9780d",
+        "type": "change",
+        "z": "808209af666702c3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "username",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f55c0d0a9fe90ac9",
+        "type": "comment",
+        "z": "808209af666702c3",
+        "name": "Register",
+        "info": "",
+        "x": 100,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "8583d9729f5cb9fc",
+        "type": "change",
+        "z": "808209af666702c3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "password",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 1340,
+        "wires": [
+            [
+                "8a2813a72971321c"
+            ]
+        ]
+    },
+    {
+        "id": "bf797f60b35f1853",
+        "type": "change",
+        "z": "808209af666702c3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "phone_number",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c257bc4b47deac38",
+        "type": "change",
+        "z": "808209af666702c3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "email",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "68ba164c0cf6b75b",
+        "type": "comment",
+        "z": "808209af666702c3",
+        "name": "Dashboard",
+        "info": "",
+        "x": 120,
+        "y": 4660,
+        "wires": []
+    },
+    {
+        "id": "8f9e69cb67b528de",
+        "type": "comment",
+        "z": "808209af666702c3",
+        "name": "OTP",
+        "info": "",
+        "x": 110,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "099cba1442bd6dcd",
+        "type": "comment",
+        "z": "808209af666702c3",
+        "name": "Login",
+        "info": "",
+        "x": 110,
+        "y": 2380,
+        "wires": []
+    },
+    {
+        "id": "4f85bf48ae841126",
+        "type": "twilio out",
+        "z": "808209af666702c3",
+        "twilio": "583f978ccd9248eb",
+        "twilioType": "sms",
+        "url": "",
+        "number": "",
+        "name": "Forgot Password OTP SMS",
+        "x": 1500,
+        "y": 3300,
+        "wires": []
+    },
+    {
+        "id": "0c01bd0a7a5a6c71",
+        "type": "ui_button",
+        "z": "808209af666702c3",
+        "name": "",
+        "group": "0d8d36b80172a1af",
+        "order": 13,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "Forgot Password",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 290,
+        "y": 3020,
+        "wires": [
+            [
+                "d471c08160adf3e1"
+            ]
+        ]
+    },
+    {
+        "id": "f1591c81d913f38c",
+        "type": "comment",
+        "z": "808209af666702c3",
+        "name": "Forgot Password",
+        "info": "",
+        "x": 120,
+        "y": 3240,
+        "wires": []
+    },
+    {
+        "id": "d471c08160adf3e1",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "Forgot Password Button to Forgot Password Page",
+        "func": "if(msg.payload==true){\n    msg.payload={\"tab\":\"Forgot Password\"}\n}\nglobal.set(\"forgotbuttontopage\",msg.payload.tab)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1370,
+        "y": 3020,
+        "wires": [
+            [
+                "8a9a4c12aa0fdf44"
+            ]
+        ]
+    },
+    {
+        "id": "fb1c60a34fb499fe",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "Login Condition",
+        "func": "if(global.get(\"passwordmatch\")==true && global.get(\"usernamematch\")==true){\n    msg.payload=\"Login Done\"\n}\nglobal.set(\"logincondition\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 2620,
+        "wires": [
+            [
+                "959e375f86864e5d"
+            ]
+        ]
+    },
+    {
+        "id": "35827e5c017f7ee0",
+        "type": "change",
+        "z": "808209af666702c3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "passwordvalid",
+                "pt": "global",
+                "to": "payload.valid",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9be8c721c2d65df8",
+        "type": "e-mail",
+        "z": "808209af666702c3",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "tls": true,
+        "name": "",
+        "dname": "Forgot Password OTP Mail",
+        "x": 1500,
+        "y": 3540,
+        "wires": []
+    },
+    {
+        "id": "a0ee8d81f7a30cc4",
+        "type": "ui_text_input",
+        "z": "808209af666702c3",
+        "name": "Forgot Password OTP",
+        "label": "OTP",
+        "tooltip": "",
+        "group": "24940c4c2bc5b11a",
+        "order": 9,
+        "width": 8,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 340,
+        "y": 3840,
+        "wires": [
+            [
+                "f83310f60e2a1b83"
+            ]
+        ]
+    },
+    {
+        "id": "7c42a375cac9ec36",
+        "type": "ui_text",
+        "z": "808209af666702c3",
+        "group": "24940c4c2bc5b11a",
+        "order": 5,
+        "width": 10,
+        "height": 1,
+        "name": "Forgot Password OTP Intimation",
+        "label": " OTP  will be sent to the Registered Email/Phone Number",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "x": 350,
+        "y": 3620,
+        "wires": []
+    },
+    {
+        "id": "f83310f60e2a1b83",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "Forgot Password OTP Verification",
+        "func": "if(msg.payload==global.get(\"ForgotPassOTP\")){\n    msg.payload=\"OTP has been verified\"\n}\nelse\n{\n    msg.payload=\"OTP doesn't match\"\n}\nglobal.set(\"OTPverifiedforgotpass\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 3840,
+        "wires": [
+            [
+                "7b81e8a96a8e2c8c",
+                "e888793e82beec59"
+            ]
+        ]
+    },
+    {
+        "id": "ee5fc969b7aac785",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "Login Button to Login Page (Forgot Password)",
+        "func": "if (msg.payload==true && global.get(\"passwordreset\")==\"Password reset can be done\" ){\n    msg.payload={\"tab\":\"Login\"}\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1320,
+        "y": 4520,
+        "wires": [
+            [
+                "8a9a4c12aa0fdf44"
+            ]
+        ]
+    },
+    {
+        "id": "720c30ee1f866dc5",
+        "type": "ui_text_input",
+        "z": "808209af666702c3",
+        "name": "",
+        "label": " New Password",
+        "tooltip": "",
+        "group": "24940c4c2bc5b11a",
+        "order": 13,
+        "width": 8,
+        "height": 1,
+        "passthru": true,
+        "mode": "password",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 320,
+        "y": 4300,
+        "wires": [
+            [
+                "36be158f5465a15c",
+                "e2a1a1b48048dc46",
+                "c078645f353f8dc5"
+            ]
+        ]
+    },
+    {
+        "id": "0c8da57c5e533274",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "Password Validation",
+        "func": "if(msg.payload.valid==false)\nmsg.payload={\"Error\":\"Password must have atleast 1 number,1 letter,1 uppercase,1 lowercase,no spaces, 1 symbol and must have a minimum length 8 characters \"}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 4160,
+        "wires": [
+            [
+                "f370e295b7b223b3"
+            ]
+        ]
+    },
+    {
+        "id": "f370e295b7b223b3",
+        "type": "ui_text",
+        "z": "808209af666702c3",
+        "group": "24940c4c2bc5b11a",
+        "order": 19,
+        "width": 20,
+        "height": 1,
+        "name": "Password Validation",
+        "label": "",
+        "format": "{{msg.payload.Error}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 1380,
+        "y": 4160,
+        "wires": []
+    },
+    {
+        "id": "36be158f5465a15c",
+        "type": "password-validator",
+        "z": "808209af666702c3",
+        "property": "payload",
+        "name": "Password Checker",
+        "digits": "1",
+        "letters": "1",
+        "lowercase": "1",
+        "uppercase": "1",
+        "symbols": "1",
+        "spaces": "0",
+        "min": "8",
+        "max": "",
+        "x": 590,
+        "y": 4300,
+        "wires": [
+            [
+                "0c8da57c5e533274",
+                "538ce99ad95c3d9e"
+            ]
+        ]
+    },
+    {
+        "id": "538ce99ad95c3d9e",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "Password Reset Condition",
+        "func": "if(msg.payload.valid==true && global.get(\"forgotpasswordverification\")==\"OTP has been verified\"){\n    msg.payload=\"Password reset can be done\"\n}\nglobal.set(\"passwordreset\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 4300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e2a1a1b48048dc46",
+        "type": "change",
+        "z": "808209af666702c3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "newpassword",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 4040,
+        "wires": [
+            [
+                "421fe36ab6cd4452"
+            ]
+        ]
+    },
+    {
+        "id": "7b81e8a96a8e2c8c",
+        "type": "change",
+        "z": "808209af666702c3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "forgotpasswordverification",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1030,
+        "y": 3900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c20991733ed87db3",
+        "type": "ui_button",
+        "z": "808209af666702c3",
+        "name": "",
+        "group": "24940c4c2bc5b11a",
+        "order": 17,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Login",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "login",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 730,
+        "y": 4520,
+        "wires": [
+            [
+                "ee5fc969b7aac785"
+            ]
+        ]
+    },
+    {
+        "id": "91720b708ddf9f92",
+        "type": "ui_text",
+        "z": "808209af666702c3",
+        "group": "952cc8d0efe668b6",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "name": "Username Validation",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1160,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "acc65563d8a6c02d",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "Username Validation",
+        "func": "if(msg.payload==\"\"){\n    msg.payload=\"Invalid Username\"\n}\nelse\n{\nmsg.payload=\"\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 440,
+        "wires": [
+            [
+                "91720b708ddf9f92"
+            ]
+        ]
+    },
+    {
+        "id": "ea28059cc4829fd2",
+        "type": "ui_text",
+        "z": "808209af666702c3",
+        "group": "952cc8d0efe668b6",
+        "order": 20,
+        "width": 0,
+        "height": 0,
+        "name": "Symbol Denotation ",
+        "label": "Fields with * are mandatory and # are non mandatory but atleast 1 of the two fields must be filled for further authentication",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "x": 290,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "421fe36ab6cd4452",
+        "type": "change",
+        "z": "808209af666702c3",
+        "name": "Password Resetting",
+        "rules": [
+            {
+                "t": "set",
+                "p": "password",
+                "pt": "global",
+                "to": "newpassword",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 4040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e888793e82beec59",
+        "type": "ui_text",
+        "z": "808209af666702c3",
+        "group": "24940c4c2bc5b11a",
+        "order": 10,
+        "width": 4,
+        "height": 1,
+        "name": "Forgot Password OTP Verification",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1020,
+        "y": 3760,
+        "wires": []
+    },
+    {
+        "id": "27eb6aeb669e8e73",
+        "type": "otpauth",
+        "z": "808209af666702c3",
+        "name": "OTP Generation 2",
+        "otptype": "totp",
+        "x": 490,
+        "y": 3420,
+        "wires": [
+            [
+                "251ec1c678d301d0",
+                "e97a8f7444113a32"
+            ]
+        ]
+    },
+    {
+        "id": "251ec1c678d301d0",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": " Forgot Password OTP Payload",
+        "func": "global.set(\"ForgotPassOTP\",msg.payload)\nmsg.payload={\"ForgotPassOTP\":global.get(\"ForgotPassOTP\")}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 3420,
+        "wires": [
+            [
+                "2f1065c40d5c9d60"
+            ]
+        ]
+    },
+    {
+        "id": "8a2813a72971321c",
+        "type": "debug",
+        "z": "808209af666702c3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "bd398078ae642c66",
+        "type": "ui_button",
+        "z": "808209af666702c3",
+        "name": "",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Get OTP",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "SecretRandom",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 260,
+        "y": 1700,
+        "wires": [
+            [
+                "e650857cf8432ed0"
+            ]
+        ]
+    },
+    {
+        "id": "f3565d97c320ae02",
+        "type": "ui_button",
+        "z": "808209af666702c3",
+        "name": "",
+        "group": "24940c4c2bc5b11a",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Get OTP",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "RandomSecret",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 140,
+        "y": 3420,
+        "wires": [
+            [
+                "22cf93f37fa7fe64"
+            ]
+        ]
+    },
+    {
+        "id": "da11498e216b3c2f",
+        "type": "ui_text",
+        "z": "808209af666702c3",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 5,
+        "width": 10,
+        "height": 1,
+        "name": " OTP Intimation",
+        "label": " OTP  will be sent to the registered Email/Phone Number",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "x": 280,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "5830d1e8222fc9d8",
+        "type": "comment",
+        "z": "808209af666702c3",
+        "name": "SPRINT 1",
+        "info": "",
+        "x": 160,
+        "y": 4980,
+        "wires": []
+    },
+    {
+        "id": "6be79f320c372ce7",
+        "type": "change",
+        "z": "808209af666702c3",
+        "name": "OTP Sending Parameters",
+        "rules": [
+            {
+                "t": "set",
+                "p": "to",
+                "pt": "msg",
+                "to": "email",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "phone_number",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1290,
+        "y": 1700,
+        "wires": [
+            [
+                "0db0509de38f1b47",
+                "23135bbb944de934"
+            ]
+        ]
+    },
+    {
+        "id": "9c6a4ecc8a0ef74c",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "Phone Number Validation",
+        "func": "if(msg.payload.isValidNumber==false ){\n    msg.payload=\"Invalid Phone Number\"\n}\nelse\n{\n    msg.payload=\"\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 820,
+        "wires": [
+            [
+                "0a3d6d6bca70ecb6"
+            ]
+        ]
+    },
+    {
+        "id": "0a3d6d6bca70ecb6",
+        "type": "ui_text",
+        "z": "808209af666702c3",
+        "group": "952cc8d0efe668b6",
+        "order": 10,
+        "width": 3,
+        "height": 1,
+        "name": "Phone Number Validation",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1210,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "b97281a3bf21795e",
+        "type": "phone-number",
+        "z": "808209af666702c3",
+        "name": "Phone Number Checker",
+        "number": "",
+        "country": "India",
+        "useplus": true,
+        "x": 650,
+        "y": 820,
+        "wires": [
+            [
+                "9c6a4ecc8a0ef74c",
+                "df5dd71b9344bfd5"
+            ]
+        ]
+    },
+    {
+        "id": "df5dd71b9344bfd5",
+        "type": "change",
+        "z": "808209af666702c3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "phone_number_valid",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 910,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "005cc1735a2651b6",
+        "type": "change",
+        "z": "808209af666702c3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "OTPverification",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 2060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2f1065c40d5c9d60",
+        "type": "change",
+        "z": "808209af666702c3",
+        "name": "Forgot Password OTP Sending Parameters",
+        "rules": [
+            {
+                "t": "set",
+                "p": "to",
+                "pt": "msg",
+                "to": "email",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "phone_number",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1150,
+        "y": 3420,
+        "wires": [
+            [
+                "4f85bf48ae841126",
+                "9be8c721c2d65df8"
+            ]
+        ]
+    },
+    {
+        "id": "e97a8f7444113a32",
+        "type": "debug",
+        "z": "808209af666702c3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 3500,
+        "wires": []
+    },
+    {
+        "id": "c078645f353f8dc5",
+        "type": "debug",
+        "z": "808209af666702c3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 4440,
+        "wires": []
+    },
+    {
+        "id": "22cf93f37fa7fe64",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "OTP Duration",
+        "func": "msg.payload.period=150\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 3420,
+        "wires": [
+            [
+                "27eb6aeb669e8e73"
+            ]
+        ]
+    },
+    {
+        "id": "e650857cf8432ed0",
+        "type": "function",
+        "z": "808209af666702c3",
+        "name": "OTP Duration",
+        "func": "msg.payload.period=150\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 1700,
+        "wires": [
+            [
+                "d956d3c3ef32c590"
+            ]
+        ]
+    },
+    {
+        "id": "d935ebb9ccd43436",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 2,
+        "width": 14,
+        "height": 1
+    },
+    {
+        "id": "6ed6f794337ef329",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "9738ddbf1cb6ba73",
+        "order": 1,
+        "width": 20,
+        "height": 1
+    },
+    {
+        "id": "637c9f4465c3b7ad",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "9738ddbf1cb6ba73",
+        "order": 2,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "751142a8ebe04a85",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "9738ddbf1cb6ba73",
+        "order": 4,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "27da3dae34e820a4",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "9738ddbf1cb6ba73",
+        "order": 5,
+        "width": 20,
+        "height": 1
+    },
+    {
+        "id": "74cf2db31aba4a12",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "9738ddbf1cb6ba73",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "9603b566f61f5211",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "9738ddbf1cb6ba73",
+        "order": 8,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "a370652f6785d55f",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 1,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "8c997fccc77a22e1",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 4,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "a0f67dfbe74ebb7c",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 5,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "3b51b780aa787b5b",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 7,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "9d090fd9ca35d131",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 8,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "bb9fa123519c2760",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 11,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "b5f2adc99e325d2f",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 12,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "c1e42bf26bca4fb8",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 14,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "96ac0b0c0a0bc374",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 15,
+        "width": 20,
+        "height": 1
+    },
+    {
+        "id": "f5064ed88cc8a5ae",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 16,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "0da4631778a333dd",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 18,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "82ec132416d02545",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 1,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "e6bfd1de1bf3d181",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 3,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "15826b5fe28074ee",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 4,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "f4739089b5e24784",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 6,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "751db6d7fc477681",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 7,
+        "width": 20,
+        "height": 1
+    },
+    {
+        "id": "49ab1efbcab15f69",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 8,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "8e979d7de8e2dc1f",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 10,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "7b27ab619b0e276d",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 11,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "f424217654b98545",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 13,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "d7fef6a0f539c7c1",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 14,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "59a88abf38c823a0",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 16,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "f0836d4521303d6c",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 17,
+        "width": 20,
+        "height": 1
+    },
+    {
+        "id": "7268b9117f4d33a4",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 18,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "05bfb5f79b845935",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 20,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "ce1b3f033d9a0d50",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "0d8d36b80172a1af",
+        "order": 1,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "efe7b2223d770747",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "0d8d36b80172a1af",
+        "order": 4,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "2f51da1b7764a553",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "0d8d36b80172a1af",
+        "order": 5,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "0b2d94a53e2198d6",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "0d8d36b80172a1af",
+        "order": 8,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "c19b5c4b2ade9283",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "0d8d36b80172a1af",
+        "order": 9,
+        "width": 20,
+        "height": 1
+    },
+    {
+        "id": "22f6f2a6796f65dc",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "0d8d36b80172a1af",
+        "order": 10,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "e5b2fe8676189ee1",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "0d8d36b80172a1af",
+        "order": 12,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "053199d4b831717c",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "0d8d36b80172a1af",
+        "order": 14,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "f1ff295fa412faca",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 1,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "25bc4534e85021a4",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 3,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "adb88359257f2893",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 4,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "8cea0389b386686e",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 6,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "a1113c934fb520f0",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 7,
+        "width": 20,
+        "height": 1
+    },
+    {
+        "id": "c4fadb7272c25bbb",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 8,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "9f021b8a8ff18b11",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 11,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "d0176af43525bb6a",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 12,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "87b5efbd5662b554",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 14,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "87affe225e509e58",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 15,
+        "width": 20,
+        "height": 1
+    },
+    {
+        "id": "39d6ace26dd30580",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 16,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "4233519dddd5f268",
+        "type": "ui_spacer",
+        "z": "808209af666702c3",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 18,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "9738ddbf1cb6ba73",
+        "type": "ui_group",
+        "name": "Home",
+        "tab": "93eea1323c8a8beb",
+        "order": 1,
+        "disp": true,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "0d8d36b80172a1af",
+        "type": "ui_group",
+        "name": "Login",
+        "tab": "2bb0afb2e23f66c8",
+        "order": 1,
+        "disp": true,
+        "width": 20,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "952cc8d0efe668b6",
+        "type": "ui_group",
+        "name": "Register",
+        "tab": "7c38a4b2f2651bd6",
+        "order": 1,
+        "disp": true,
+        "width": 20,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ff7a2dc9f08c1b69",
+        "type": "ui_group",
+        "name": "OTP",
+        "tab": "254e31c23b4efb8b",
+        "order": 1,
+        "disp": true,
+        "width": 20,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "94b5423573981139",
+        "type": "ui_group",
+        "name": "Dashboard",
+        "tab": "1a711baafefc3263",
+        "order": 1,
+        "disp": true,
+        "width": 20,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "583f978ccd9248eb",
+        "type": "twilio-api",
+        "name": "twillio otp",
+        "sid": "ACd95a7eb4ad4b0ebe80ee7495fc558bd5",
+        "from": "+18318511955"
+    },
+    {
+        "id": "24940c4c2bc5b11a",
+        "type": "ui_group",
+        "name": "Forgot Password",
+        "tab": "79575bdbc9a23bb5",
+        "order": 2,
+        "disp": true,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "93eea1323c8a8beb",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "2bb0afb2e23f66c8",
+        "type": "ui_tab",
+        "name": "Login",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "7c38a4b2f2651bd6",
+        "type": "ui_tab",
+        "name": "Register",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "254e31c23b4efb8b",
+        "type": "ui_tab",
+        "name": "OTP",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "1a711baafefc3263",
+        "type": "ui_tab",
+        "name": "Dashboard",
+        "icon": "dashboard",
+        "order": 6,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "79575bdbc9a23bb5",
+        "type": "ui_tab",
+        "name": "Forgot Password",
+        "icon": "dashboard",
+        "order": 5,
+        "disabled": false,
+        "hidden": false
+    }
+]
