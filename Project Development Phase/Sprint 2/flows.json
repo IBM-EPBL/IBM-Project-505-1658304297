@@ -1,0 +1,4789 @@
+[
+    {
+        "id": "2e1b0f89c3124453",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "416e5ff077522919",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Login Button to Login Page",
+        "func": "if(msg.payload==true){\nmsg.payload={\"tab\":\"Login\"}\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1360,
+        "y": 220,
+        "wires": [
+            [
+                "20999ed7e95b8428"
+            ]
+        ]
+    },
+    {
+        "id": "630f6f6c99e1d44f",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Register Button to Register Page",
+        "func": "if(msg.payload==true){\nmsg.payload={\"tab\":\"Register\"}\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1360,
+        "y": 120,
+        "wires": [
+            [
+                "20999ed7e95b8428"
+            ]
+        ]
+    },
+    {
+        "id": "3740d2648e9b440b",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Register Button to OTP Page",
+        "func": "if(msg.payload==true && global.get(\"passwordvalid\")==true && global.get(\"username\")!=\"\" && ( global.get(\"email\")!=\"\" || global.get(\"phone_number_valid\")!=\"\")){\nmsg.payload={\"tab\":\"OTP\"}\n\n}\nglobal.set(\"registertoOTP\",msg.payload.tab)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1460,
+        "y": 1180,
+        "wires": [
+            [
+                "20999ed7e95b8428"
+            ]
+        ]
+    },
+    {
+        "id": "f80ed011c433db10",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Login Button to Dashboard Page",
+        "func": "if(msg.payload==true && global.get(\"logincondition\")==\"Login Done\"){\nmsg.payload={\"tab\":\"Dashboard\"}\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1410,
+        "y": 2620,
+        "wires": [
+            [
+                "20999ed7e95b8428"
+            ]
+        ]
+    },
+    {
+        "id": "b950f9d26b31bd5b",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Password Validation",
+        "func": "if(msg.payload.valid==false)\nmsg.payload={\"Error\":\"Password must have atleast 1 number,1 letter,1 uppercase,1 lowercase,no spaces, 1 symbol and must have a minimum length 8 characters \"}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 980,
+        "wires": [
+            [
+                "5c2b0390a201a5d7"
+            ]
+        ]
+    },
+    {
+        "id": "14c95fc8077cf3ae",
+        "type": "ui_button",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "group": "9738ddbf1cb6ba73",
+        "order": 3,
+        "width": 8,
+        "height": 1,
+        "passthru": false,
+        "label": "Register",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "register",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 280,
+        "y": 120,
+        "wires": [
+            [
+                "630f6f6c99e1d44f"
+            ]
+        ]
+    },
+    {
+        "id": "9cc919547151e35d",
+        "type": "ui_button",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "group": "9738ddbf1cb6ba73",
+        "order": 7,
+        "width": 8,
+        "height": 1,
+        "passthru": false,
+        "label": "Login",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "login",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 270,
+        "y": 220,
+        "wires": [
+            [
+                "416e5ff077522919"
+            ]
+        ]
+    },
+    {
+        "id": "926a44169e0b7b5f",
+        "type": "ui_button",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "group": "0d8d36b80172a1af",
+        "order": 11,
+        "width": 7,
+        "height": 1,
+        "passthru": false,
+        "label": "Login",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "login",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1150,
+        "y": 2780,
+        "wires": [
+            [
+                "f80ed011c433db10"
+            ]
+        ]
+    },
+    {
+        "id": "32721a4d24837ab4",
+        "type": "ui_button",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "group": "952cc8d0efe668b6",
+        "order": 17,
+        "width": 8,
+        "height": 1,
+        "passthru": false,
+        "label": "Register",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "register",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 940,
+        "y": 1180,
+        "wires": [
+            [
+                "3740d2648e9b440b"
+            ]
+        ]
+    },
+    {
+        "id": "7bc2522dddf26fe4",
+        "type": "ui_text_input",
+        "z": "2e1b0f89c3124453",
+        "name": "User Name",
+        "label": "User Name *",
+        "tooltip": "",
+        "group": "952cc8d0efe668b6",
+        "order": 2,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 290,
+        "y": 440,
+        "wires": [
+            [
+                "50d06bb7a1e61efd",
+                "045943f33583e503"
+            ]
+        ]
+    },
+    {
+        "id": "8876007e9c0bd5d0",
+        "type": "ui_text_input",
+        "z": "2e1b0f89c3124453",
+        "name": "Email",
+        "label": "Email #",
+        "tooltip": "",
+        "group": "952cc8d0efe668b6",
+        "order": 6,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "email",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 270,
+        "y": 600,
+        "wires": [
+            [
+                "8777785af128b58c"
+            ]
+        ]
+    },
+    {
+        "id": "0786df8c45ad16d1",
+        "type": "ui_text_input",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "label": "Username",
+        "tooltip": "",
+        "group": "0d8d36b80172a1af",
+        "order": 2,
+        "width": 9,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 270,
+        "y": 2560,
+        "wires": [
+            [
+                "e1628cd3f3972f3d"
+            ]
+        ]
+    },
+    {
+        "id": "5af7cf78d72e4a5a",
+        "type": "ui_text_input",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "label": "Password",
+        "tooltip": "",
+        "group": "0d8d36b80172a1af",
+        "order": 6,
+        "width": 9,
+        "height": 1,
+        "passthru": true,
+        "mode": "password",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 260,
+        "y": 2720,
+        "wires": [
+            [
+                "d2182f322d343f74"
+            ]
+        ]
+    },
+    {
+        "id": "f00156ba2fb0b896",
+        "type": "ui_text_input",
+        "z": "2e1b0f89c3124453",
+        "name": "Phone Number",
+        "label": "Phone Number (+xx-xxxxxxxxxx)  #",
+        "tooltip": "",
+        "group": "952cc8d0efe668b6",
+        "order": 9,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "tel",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 300,
+        "y": 820,
+        "wires": [
+            [
+                "91f4643eb71793f1",
+                "3029a198830ddf18"
+            ]
+        ]
+    },
+    {
+        "id": "def4294a03548cf0",
+        "type": "ui_text_input",
+        "z": "2e1b0f89c3124453",
+        "name": "Password",
+        "label": "Password *",
+        "tooltip": "",
+        "group": "952cc8d0efe668b6",
+        "order": 13,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "password",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 260,
+        "y": 1160,
+        "wires": [
+            [
+                "32721a4d24837ab4",
+                "3e99e97720249687",
+                "e3e1abd8c5eabd5d"
+            ]
+        ]
+    },
+    {
+        "id": "5c2b0390a201a5d7",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "952cc8d0efe668b6",
+        "order": 19,
+        "width": 0,
+        "height": 0,
+        "name": "Password Validation",
+        "label": "",
+        "format": "{{msg.payload.Error}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 1220,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "20999ed7e95b8428",
+        "type": "ui_ui_control",
+        "z": "2e1b0f89c3124453",
+        "name": "Dashboard Tabs Control",
+        "events": "change",
+        "x": 2070,
+        "y": 1760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3e99e97720249687",
+        "type": "password-validator",
+        "z": "2e1b0f89c3124453",
+        "property": "payload",
+        "name": "Password Checker",
+        "digits": "1",
+        "letters": "1",
+        "lowercase": "1",
+        "uppercase": "1",
+        "symbols": "1",
+        "spaces": "0",
+        "min": "8",
+        "max": "",
+        "x": 590,
+        "y": 1060,
+        "wires": [
+            [
+                "b950f9d26b31bd5b",
+                "f0fc7809454d27bf"
+            ]
+        ]
+    },
+    {
+        "id": "c62f451b72f5a333",
+        "type": "otpauth",
+        "z": "2e1b0f89c3124453",
+        "name": "OTP Generation 1",
+        "otptype": "totp",
+        "x": 650,
+        "y": 1700,
+        "wires": [
+            [
+                "dbcb5c1006d62ea9",
+                "29e50cca048bfe0a"
+            ]
+        ]
+    },
+    {
+        "id": "b1e3356e92323eb8",
+        "type": "ui_text_input",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "label": "OTP",
+        "tooltip": "",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 12,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 270,
+        "y": 2120,
+        "wires": [
+            [
+                "93286a77cdb5c802"
+            ]
+        ]
+    },
+    {
+        "id": "d0d2822bdd71c52f",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 9,
+        "width": 10,
+        "height": 1,
+        "name": "OTP entry",
+        "label": "Enter OTP",
+        "format": "",
+        "layout": "col-center",
+        "className": "",
+        "x": 570,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "0650e71d4fa70fa9",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "order": 3,
+        "width": 2,
+        "height": 1,
+        "name": "",
+        "label": "Welcome",
+        "format": "{{msg.payload}}",
+        "layout": "row-right",
+        "className": "",
+        "x": 300,
+        "y": 4780,
+        "wires": []
+    },
+    {
+        "id": "93286a77cdb5c802",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "OTP Verification",
+        "func": "if(global.get(\"OTP\")== msg.payload){\nmsg.payload=\"OTP has been verified\"\n}\nelse{\nmsg.payload=\"OTP doesn't match\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 2120,
+        "wires": [
+            [
+                "acc3f9e1827426a2",
+                "05f1887da5dfa2d0"
+            ]
+        ]
+    },
+    {
+        "id": "dbcb5c1006d62ea9",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "OTP Payload",
+        "func": "global.set(\"OTP\",msg.payload)\nmsg.payload={\"OTP\":global.get(\"OTP\")}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 1700,
+        "wires": [
+            [
+                "2b9c73540be925da"
+            ]
+        ]
+    },
+    {
+        "id": "acc3f9e1827426a2",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 15,
+        "width": 10,
+        "height": 1,
+        "name": "OTP Verification ",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 900,
+        "y": 2180,
+        "wires": []
+    },
+    {
+        "id": "8be2c807f38f65ab",
+        "type": "ui_button",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 19,
+        "width": 8,
+        "height": 1,
+        "passthru": false,
+        "label": "Login",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "login",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1090,
+        "y": 2220,
+        "wires": [
+            [
+                "830f9c44ada1564c"
+            ]
+        ]
+    },
+    {
+        "id": "830f9c44ada1564c",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "OTP Button to Login Page",
+        "func": "if(msg.payload==true && global.get(\"OTPverification\")==\"OTP has been verified\"){\nmsg.payload={\"tab\":\"Login\"}\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1390,
+        "y": 2120,
+        "wires": [
+            [
+                "20999ed7e95b8428"
+            ]
+        ]
+    },
+    {
+        "id": "e1628cd3f3972f3d",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Username Match",
+        "func": "if(msg.payload==global.get(\"username\")){\nmsg.payload=\"Username matches\"\nvar usernamematch=true\n}\nelse{\nmsg.payload=\"Username doesn't match\"\nusernamematch=false\n}\nglobal.set(\"usernamematch\",usernamematch)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 2560,
+        "wires": [
+            [
+                "0c70f56e6f06d09b",
+                "9de2ea66bb311e3b"
+            ]
+        ]
+    },
+    {
+        "id": "d2182f322d343f74",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Password Match",
+        "func": "if(msg.payload==global.get(\"password\")){\nmsg.payload=\"Password matches\"\nvar passwordmatch=true\n}\nelse{\nmsg.payload=\"Password doesn't match\"\npasswordmatch=false\n}\nglobal.set(\"passwordmatch\",passwordmatch)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 2720,
+        "wires": [
+            [
+                "846c56a1b7f4f7d4",
+                "9de2ea66bb311e3b"
+            ]
+        ]
+    },
+    {
+        "id": "846c56a1b7f4f7d4",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "0d8d36b80172a1af",
+        "order": 7,
+        "width": 5,
+        "height": 1,
+        "name": "Password Match",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 740,
+        "y": 2840,
+        "wires": []
+    },
+    {
+        "id": "0c70f56e6f06d09b",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "0d8d36b80172a1af",
+        "order": 3,
+        "width": 5,
+        "height": 1,
+        "name": "Username Match",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 810,
+        "y": 2460,
+        "wires": []
+    },
+    {
+        "id": "29e50cca048bfe0a",
+        "type": "debug",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 1800,
+        "wires": []
+    },
+    {
+        "id": "9e91d80b1b450550",
+        "type": "e-mail",
+        "z": "2e1b0f89c3124453",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "tls": true,
+        "name": "",
+        "dname": "OTP Mail",
+        "x": 1680,
+        "y": 1820,
+        "wires": []
+    },
+    {
+        "id": "0dde742e288285d5",
+        "type": "twilio out",
+        "z": "2e1b0f89c3124453",
+        "twilio": "583f978ccd9248eb",
+        "twilioType": "sms",
+        "url": "",
+        "number": "",
+        "name": "OTP SMS",
+        "x": 1680,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "a7b0cf421b0ac36d",
+        "type": "comment",
+        "z": "2e1b0f89c3124453",
+        "name": "Home",
+        "info": "",
+        "x": 90,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "50d06bb7a1e61efd",
+        "type": "change",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "username",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b1dec7bbce179fcd",
+        "type": "comment",
+        "z": "2e1b0f89c3124453",
+        "name": "Register",
+        "info": "",
+        "x": 100,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "e3e1abd8c5eabd5d",
+        "type": "change",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "password",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 1340,
+        "wires": [
+            [
+                "2779ebf69cb69e2e"
+            ]
+        ]
+    },
+    {
+        "id": "91f4643eb71793f1",
+        "type": "change",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "phone_number",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8777785af128b58c",
+        "type": "change",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "email",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e37485b233c2b542",
+        "type": "comment",
+        "z": "2e1b0f89c3124453",
+        "name": "Dashboard",
+        "info": "",
+        "x": 120,
+        "y": 4660,
+        "wires": []
+    },
+    {
+        "id": "8202daf883fc215a",
+        "type": "comment",
+        "z": "2e1b0f89c3124453",
+        "name": "OTP",
+        "info": "",
+        "x": 110,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "bb428059701ca1ed",
+        "type": "comment",
+        "z": "2e1b0f89c3124453",
+        "name": "Login",
+        "info": "",
+        "x": 110,
+        "y": 2380,
+        "wires": []
+    },
+    {
+        "id": "c40840a87f92c469",
+        "type": "twilio out",
+        "z": "2e1b0f89c3124453",
+        "twilio": "583f978ccd9248eb",
+        "twilioType": "sms",
+        "url": "",
+        "number": "",
+        "name": "Forgot Password OTP SMS",
+        "x": 1500,
+        "y": 3300,
+        "wires": []
+    },
+    {
+        "id": "fcd0ea122dc840ce",
+        "type": "ui_button",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "group": "0d8d36b80172a1af",
+        "order": 13,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "Forgot Password",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 290,
+        "y": 3020,
+        "wires": [
+            [
+                "e549908f066cf4c5"
+            ]
+        ]
+    },
+    {
+        "id": "b9a7e994c8ab0c38",
+        "type": "comment",
+        "z": "2e1b0f89c3124453",
+        "name": "Forgot Password",
+        "info": "",
+        "x": 120,
+        "y": 3240,
+        "wires": []
+    },
+    {
+        "id": "e549908f066cf4c5",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Forgot Password Button to Forgot Password Page",
+        "func": "if(msg.payload==true){\n    msg.payload={\"tab\":\"Forgot Password\"}\n}\nglobal.set(\"forgotbuttontopage\",msg.payload.tab)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1370,
+        "y": 3020,
+        "wires": [
+            [
+                "20999ed7e95b8428"
+            ]
+        ]
+    },
+    {
+        "id": "9de2ea66bb311e3b",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Login Condition",
+        "func": "if(global.get(\"passwordmatch\")==true && global.get(\"usernamematch\")==true){\n    msg.payload=\"Login Done\"\n}\nglobal.set(\"logincondition\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 2620,
+        "wires": [
+            [
+                "f80ed011c433db10"
+            ]
+        ]
+    },
+    {
+        "id": "f0fc7809454d27bf",
+        "type": "change",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "passwordvalid",
+                "pt": "global",
+                "to": "payload.valid",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e941f6906abf37f2",
+        "type": "e-mail",
+        "z": "2e1b0f89c3124453",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "tls": true,
+        "name": "",
+        "dname": "Forgot Password OTP Mail",
+        "x": 1500,
+        "y": 3540,
+        "wires": []
+    },
+    {
+        "id": "a4896e501c8d892d",
+        "type": "ui_text_input",
+        "z": "2e1b0f89c3124453",
+        "name": "Forgot Password OTP",
+        "label": "OTP",
+        "tooltip": "",
+        "group": "24940c4c2bc5b11a",
+        "order": 9,
+        "width": 8,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 340,
+        "y": 3840,
+        "wires": [
+            [
+                "fa0ae7cb1d8226a6"
+            ]
+        ]
+    },
+    {
+        "id": "5dbc73b3a6de703a",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "24940c4c2bc5b11a",
+        "order": 5,
+        "width": 10,
+        "height": 1,
+        "name": "Forgot Password OTP Intimation",
+        "label": " OTP  will be sent to the Registered Email/Phone Number",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "x": 350,
+        "y": 3620,
+        "wires": []
+    },
+    {
+        "id": "fa0ae7cb1d8226a6",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Forgot Password OTP Verification",
+        "func": "if(msg.payload==global.get(\"ForgotPassOTP\")){\n    msg.payload=\"OTP has been verified\"\n}\nelse\n{\n    msg.payload=\"OTP doesn't match\"\n}\nglobal.set(\"OTPverifiedforgotpass\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 3840,
+        "wires": [
+            [
+                "b7f5d927bea06134",
+                "7337e8e0f2b863d7"
+            ]
+        ]
+    },
+    {
+        "id": "ec161879de2c9a94",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Login Button to Login Page (Forgot Password)",
+        "func": "if (msg.payload==true && global.get(\"passwordreset\")==\"Password reset can be done\" ){\n    msg.payload={\"tab\":\"Login\"}\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1320,
+        "y": 4520,
+        "wires": [
+            [
+                "20999ed7e95b8428"
+            ]
+        ]
+    },
+    {
+        "id": "6e0f34e7c0967e8f",
+        "type": "ui_text_input",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "label": " New Password",
+        "tooltip": "",
+        "group": "24940c4c2bc5b11a",
+        "order": 13,
+        "width": 8,
+        "height": 1,
+        "passthru": true,
+        "mode": "password",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 320,
+        "y": 4300,
+        "wires": [
+            [
+                "a88c085765bc721c",
+                "2d365ce69572e0cc",
+                "9092d8d65befb6aa"
+            ]
+        ]
+    },
+    {
+        "id": "8712696c22edcd70",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Password Validation",
+        "func": "if(msg.payload.valid==false)\nmsg.payload={\"Error\":\"Password must have atleast 1 number,1 letter,1 uppercase,1 lowercase,no spaces, 1 symbol and must have a minimum length 8 characters \"}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 4160,
+        "wires": [
+            [
+                "39730c4dd16c411f"
+            ]
+        ]
+    },
+    {
+        "id": "39730c4dd16c411f",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "24940c4c2bc5b11a",
+        "order": 14,
+        "width": 4,
+        "height": 1,
+        "name": "Password Validation",
+        "label": "",
+        "format": "{{msg.payload.Error}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 1380,
+        "y": 4160,
+        "wires": []
+    },
+    {
+        "id": "a88c085765bc721c",
+        "type": "password-validator",
+        "z": "2e1b0f89c3124453",
+        "property": "payload",
+        "name": "Password Checker",
+        "digits": "1",
+        "letters": "1",
+        "lowercase": "1",
+        "uppercase": "1",
+        "symbols": "1",
+        "spaces": "0",
+        "min": "8",
+        "max": "",
+        "x": 590,
+        "y": 4300,
+        "wires": [
+            [
+                "8712696c22edcd70",
+                "01531bd917eb3a7f"
+            ]
+        ]
+    },
+    {
+        "id": "01531bd917eb3a7f",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Password Reset Condition",
+        "func": "if(msg.payload.valid==true && global.get(\"forgotpasswordverification\")==\"OTP has been verified\"){\n    msg.payload=\"Password reset can be done\"\n}\nglobal.set(\"passwordreset\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 4300,
+        "wires": [
+            [
+                "db57c32e51c89e24"
+            ]
+        ]
+    },
+    {
+        "id": "2d365ce69572e0cc",
+        "type": "change",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "newpassword",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 4040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b7f5d927bea06134",
+        "type": "change",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "forgotpasswordverification",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1030,
+        "y": 3900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "80d143c5750ea589",
+        "type": "ui_button",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "group": "24940c4c2bc5b11a",
+        "order": 18,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Login",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "login",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 730,
+        "y": 4520,
+        "wires": [
+            [
+                "ec161879de2c9a94"
+            ]
+        ]
+    },
+    {
+        "id": "3415494ac64bdb0e",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "952cc8d0efe668b6",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "name": "Username Validation",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1160,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "045943f33583e503",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Username Validation",
+        "func": "if(msg.payload==\"\"){\n    msg.payload=\"Invalid Username\"\n}\nelse\n{\nmsg.payload=\"\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 440,
+        "wires": [
+            [
+                "3415494ac64bdb0e"
+            ]
+        ]
+    },
+    {
+        "id": "02b4fcf4437699f8",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "952cc8d0efe668b6",
+        "order": 20,
+        "width": 0,
+        "height": 0,
+        "name": "Symbol Denotation ",
+        "label": "Fields with * are mandatory and # are non mandatory but atleast 1 of the two fields must be filled for further authentication",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "x": 290,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "7337e8e0f2b863d7",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "24940c4c2bc5b11a",
+        "order": 10,
+        "width": 4,
+        "height": 1,
+        "name": "Forgot Password OTP Verification",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1020,
+        "y": 3760,
+        "wires": []
+    },
+    {
+        "id": "045777ed8d76d3a0",
+        "type": "otpauth",
+        "z": "2e1b0f89c3124453",
+        "name": "OTP Generation 2",
+        "otptype": "totp",
+        "x": 490,
+        "y": 3420,
+        "wires": [
+            [
+                "2ce7a3898b4245f5",
+                "ec0365c55fb90aec"
+            ]
+        ]
+    },
+    {
+        "id": "2ce7a3898b4245f5",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": " Forgot Password OTP Payload",
+        "func": "global.set(\"ForgotPassOTP\",msg.payload)\nmsg.payload={\"ForgotPassOTP\":global.get(\"ForgotPassOTP\")}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 3420,
+        "wires": [
+            [
+                "8e0a85503e16234f"
+            ]
+        ]
+    },
+    {
+        "id": "2779ebf69cb69e2e",
+        "type": "debug",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "7e98cd936d7ca705",
+        "type": "ui_button",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Get OTP",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "SecretRandom",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 260,
+        "y": 1700,
+        "wires": [
+            [
+                "4c47aceb4114d599"
+            ]
+        ]
+    },
+    {
+        "id": "c35cc6522b996487",
+        "type": "ui_button",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "group": "24940c4c2bc5b11a",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Get OTP",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "RandomSecret",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 140,
+        "y": 3420,
+        "wires": [
+            [
+                "9ef629168d14da7a"
+            ]
+        ]
+    },
+    {
+        "id": "a0e980a0282889f9",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 5,
+        "width": 10,
+        "height": 1,
+        "name": " OTP Intimation",
+        "label": " OTP  will be sent to the registered Email/Phone Number",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "x": 280,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "56c44ed297c9f38c",
+        "type": "comment",
+        "z": "2e1b0f89c3124453",
+        "name": "SPRINT 1",
+        "info": "",
+        "x": 160,
+        "y": 4980,
+        "wires": []
+    },
+    {
+        "id": "2b9c73540be925da",
+        "type": "change",
+        "z": "2e1b0f89c3124453",
+        "name": "OTP Sending Parameters",
+        "rules": [
+            {
+                "t": "set",
+                "p": "to",
+                "pt": "msg",
+                "to": "email",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "phone_number",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1290,
+        "y": 1700,
+        "wires": [
+            [
+                "0dde742e288285d5",
+                "9e91d80b1b450550"
+            ]
+        ]
+    },
+    {
+        "id": "7e847bae41cea62b",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Phone Number Validation",
+        "func": "if(msg.payload.isValidNumber==false ){\n    msg.payload=\"Invalid Phone Number\"\n}\nelse\n{\n    msg.payload=\"\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 820,
+        "wires": [
+            [
+                "53e6d6cd7b5ecd38"
+            ]
+        ]
+    },
+    {
+        "id": "53e6d6cd7b5ecd38",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "952cc8d0efe668b6",
+        "order": 10,
+        "width": 3,
+        "height": 1,
+        "name": "Phone Number Validation",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1210,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "3029a198830ddf18",
+        "type": "phone-number",
+        "z": "2e1b0f89c3124453",
+        "name": "Phone Number Checker",
+        "number": "",
+        "country": "India",
+        "useplus": true,
+        "x": 650,
+        "y": 820,
+        "wires": [
+            [
+                "7e847bae41cea62b",
+                "795291f2293a9340"
+            ]
+        ]
+    },
+    {
+        "id": "795291f2293a9340",
+        "type": "change",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "phone_number_valid",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 910,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "05f1887da5dfa2d0",
+        "type": "change",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "OTPverification",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 2060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8e0a85503e16234f",
+        "type": "change",
+        "z": "2e1b0f89c3124453",
+        "name": "Forgot Password OTP Sending Parameters",
+        "rules": [
+            {
+                "t": "set",
+                "p": "to",
+                "pt": "msg",
+                "to": "email",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "phone_number",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1150,
+        "y": 3420,
+        "wires": [
+            [
+                "c40840a87f92c469",
+                "e941f6906abf37f2"
+            ]
+        ]
+    },
+    {
+        "id": "ec0365c55fb90aec",
+        "type": "debug",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 3500,
+        "wires": []
+    },
+    {
+        "id": "9092d8d65befb6aa",
+        "type": "debug",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 4440,
+        "wires": []
+    },
+    {
+        "id": "9ef629168d14da7a",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "OTP Duration",
+        "func": "msg.payload.period=150\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 3420,
+        "wires": [
+            [
+                "045777ed8d76d3a0"
+            ]
+        ]
+    },
+    {
+        "id": "4c47aceb4114d599",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "OTP Duration",
+        "func": "msg.payload.period=150\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 1700,
+        "wires": [
+            [
+                "c62f451b72f5a333"
+            ]
+        ]
+    },
+    {
+        "id": "2d255fced7415cf8",
+        "type": "ui_button",
+        "z": "2e1b0f89c3124453",
+        "name": "Motor on",
+        "group": "96de8fbc79c9593c",
+        "order": 6,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "MOTOR ON",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 3280,
+        "y": 2600,
+        "wires": [
+            [
+                "6dd65539aad98b2f"
+            ]
+        ]
+    },
+    {
+        "id": "daea8fc6a0059cab",
+        "type": "ui_button",
+        "z": "2e1b0f89c3124453",
+        "name": "Motor off",
+        "group": "96de8fbc79c9593c",
+        "order": 9,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "MOTOR OFF",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 3280,
+        "y": 2680,
+        "wires": [
+            [
+                "6dd65539aad98b2f"
+            ]
+        ]
+    },
+    {
+        "id": "db57c32e51c89e24",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Password Resetting",
+        "func": "if(msg.payload==\"Password reset can be done\"){\n    var newpassword=global.get(\"newpassword\")\n    global.set(\"password\",newpassword)\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1320,
+        "y": 4300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "35f1152b1f2635df",
+        "type": "ui_digital_clock",
+        "z": "2e1b0f89c3124453",
+        "name": "Current Time",
+        "group": "94b5423573981139",
+        "order": 1,
+        "width": 3,
+        "height": 1,
+        "x": 3650,
+        "y": 2500,
+        "wires": []
+    },
+    {
+        "id": "bb2c8ab2d6b2b1bd",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "name": "User Display",
+        "label": "User Name",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3650,
+        "y": 2420,
+        "wires": []
+    },
+    {
+        "id": "aa2712d84f417634",
+        "type": "inject",
+        "z": "2e1b0f89c3124453",
+        "name": "User Display",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "username",
+        "payloadType": "global",
+        "x": 3320,
+        "y": 2420,
+        "wires": [
+            [
+                "bb2c8ab2d6b2b1bd"
+            ]
+        ]
+    },
+    {
+        "id": "e15f7543eac7c688",
+        "type": "ui_template",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "name": "User Icon",
+        "order": 4,
+        "width": 1,
+        "height": 1,
+        "format": "<div style=\"display: flex;height: 100%;justify-content: center;align-items: center;\">\n<i class=\"fa fa-user-circle\" aria-hidden=\"true\"></i>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 4080,
+        "y": 2420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a9354e469479d8d5",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "96de8fbc79c9593c",
+        "order": 2,
+        "width": 2,
+        "height": 1,
+        "name": "Motor",
+        "label": "Motor",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "x": 4050,
+        "y": 2640,
+        "wires": []
+    },
+    {
+        "id": "52dda5b02a8e183e",
+        "type": "ibmiot in",
+        "z": "2e1b0f89c3124453",
+        "authentication": "apiKey",
+        "apiKey": "c72cf225c5de89db",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "ESP32",
+        "applicationId": "",
+        "deviceType": "IOTDeviceIBM",
+        "eventType": "evt",
+        "commandType": "cmd",
+        "format": "json",
+        "name": "IBM IoT",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": false,
+        "allLogicalInterfaces": "",
+        "allEvents": true,
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 3290,
+        "y": 540,
+        "wires": [
+            [
+                "d96ea08f80f044e5",
+                "fd2d3ea7d30ef9f4",
+                "357b423e0a62ba46",
+                "79e0c56751775d5d",
+                "cf056a033a706797",
+                "5181392d1489d56d",
+                "0bc4c6e5f9691df1",
+                "9d495c2ab716af65",
+                "a3583a6c5d8bc4a5",
+                "96442318b16e8d38",
+                "e240b7ed83bf3a9c"
+            ]
+        ]
+    },
+    {
+        "id": "d96ea08f80f044e5",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Humidity",
+        "func": "global.set(\"humidity\",msg.payload.humidity)\nmsg.payload=msg.payload.humidity\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3640,
+        "y": 100,
+        "wires": [
+            [
+                "a379d6b56229b0bc"
+            ]
+        ]
+    },
+    {
+        "id": "fd2d3ea7d30ef9f4",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Feels like",
+        "func": "global.set(\"feelslike\",msg.payload.feelslike)\nmsg.payload=Math.round(msg.payload.feelslike)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3640,
+        "y": 160,
+        "wires": [
+            [
+                "eb7e9771f03c1cdf"
+            ]
+        ]
+    },
+    {
+        "id": "357b423e0a62ba46",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Water Level",
+        "func": "global.set(\"waterlevel\",msg.payload.waterlevel)\nif(msg.payload==0){\nmsg.payload=\"Water Level in the tank is below 50%\"\n}\nelse{\nmsg.payload=\"Water level in the tank is above 50%\"\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3650,
+        "y": 300,
+        "wires": [
+            [
+                "1ebea7002f797e2a",
+                "4cd268e55e024810"
+            ]
+        ]
+    },
+    {
+        "id": "79e0c56751775d5d",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "pH Level",
+        "func": "global.set(\"pHlevel\",msg.payload.pHlevel)\nmsg.payload=Math.round(msg.payload.pHlevel)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3640,
+        "y": 400,
+        "wires": [
+            [
+                "fb8b39d4bd05440f"
+            ]
+        ]
+    },
+    {
+        "id": "cf056a033a706797",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Gas Particles",
+        "func": "if(msg.payload.gasparticles!=undefined ){\nglobal.set(\"gasparticles\",msg.payload.gasparticles)\nmsg.payload=msg.payload.gasparticles\nreturn msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3650,
+        "y": 500,
+        "wires": [
+            [
+                "cbe4f1028178747e"
+            ]
+        ]
+    },
+    {
+        "id": "5181392d1489d56d",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Soil Moisture",
+        "func": "if(msg.payload.soilmoisture!=undefined ){\nglobal.set(\"soilmoisture\",msg.payload.soilmoisture)\nmsg.payload=msg.payload.soilmoisture\nreturn msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3650,
+        "y": 600,
+        "wires": [
+            [
+                "65455d17ed7f298d"
+            ]
+        ]
+    },
+    {
+        "id": "9d495c2ab716af65",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Nitrogen",
+        "func": "if(msg.payload.nitrogen!=undefined ){\nglobal.set(\"nitrogen\",msg.payload.nitrogen)\nmsg.payload=msg.payload.nitrogen\nreturn msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3640,
+        "y": 700,
+        "wires": [
+            [
+                "3cd6db31022a521f"
+            ]
+        ]
+    },
+    {
+        "id": "a3583a6c5d8bc4a5",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Phosphorous",
+        "func": "if(msg.payload.phosphorous!=undefined ){\nglobal.set(\"phosphorous\",msg.payload.phosphorous)\nmsg.payload=msg.payload.phosphorous\nreturn msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3650,
+        "y": 780,
+        "wires": [
+            [
+                "90fab0d1c31aa6d4"
+            ]
+        ]
+    },
+    {
+        "id": "96442318b16e8d38",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Potassium",
+        "func": "if(msg.payload.potassium!=undefined ){\nglobal.set(\"potassium\",msg.payload.potassium)\nmsg.payload=msg.payload.potassium\nreturn msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3650,
+        "y": 880,
+        "wires": [
+            [
+                "f3920f87fca46866"
+            ]
+        ]
+    },
+    {
+        "id": "0bc4c6e5f9691df1",
+        "type": "debug",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3310,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "a37c3fed30db49e5",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Longitude",
+        "func": "global.set(\"lon\",msg.location.lon)\nmsg.payload=msg.location.lon\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3640,
+        "y": 980,
+        "wires": [
+            [
+                "255258e09add2a59"
+            ]
+        ]
+    },
+    {
+        "id": "68f137e59ec26563",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "order": 8,
+        "width": 3,
+        "height": 1,
+        "name": "Latitude",
+        "label": "Latitude",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 4100,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "1d3f1d13dbfaf0da",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "order": 25,
+        "width": 2,
+        "height": 1,
+        "name": "Weather",
+        "label": "Weather",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 4100,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "255258e09add2a59",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "order": 9,
+        "width": 3,
+        "height": 1,
+        "name": "Longitude",
+        "label": "Longitude",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 4100,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "2f33f81657919519",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "order": 26,
+        "width": 3,
+        "height": 1,
+        "name": "Weather Detail",
+        "label": "Weather Detail",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 4120,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "806422d9d2ead7fa",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "order": 10,
+        "width": 3,
+        "height": 1,
+        "name": "City",
+        "label": "City",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 4090,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "c1bb389ea1910a01",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "order": 11,
+        "width": 2,
+        "height": 1,
+        "name": "Country",
+        "label": "Country",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 4100,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "775684d3d46b14a3",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Latitude",
+        "func": "global.set(\"lat\",msg.location.lat)\nmsg.payload=msg.location.lat\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3640,
+        "y": 1060,
+        "wires": [
+            [
+                "68f137e59ec26563"
+            ]
+        ]
+    },
+    {
+        "id": "576d2ed1f370b079",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Weather",
+        "func": "global.set(\"weather\",msg.payload.weather)\nmsg.payload=msg.payload.weather\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3640,
+        "y": 1300,
+        "wires": [
+            [
+                "1d3f1d13dbfaf0da"
+            ]
+        ]
+    },
+    {
+        "id": "87c7e7ebe0a42f74",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Weather Detail",
+        "func": "global.set(\"weatherdetail\",msg.payload.detail)\nmsg.payload=msg.payload.detail\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3660,
+        "y": 1380,
+        "wires": [
+            [
+                "2f33f81657919519"
+            ]
+        ]
+    },
+    {
+        "id": "3153ed32fe768be5",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Cty",
+        "func": "global.set(\"city\",msg.location.city)\nmsg.payload=msg.location.city\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3630,
+        "y": 1140,
+        "wires": [
+            [
+                "806422d9d2ead7fa"
+            ]
+        ]
+    },
+    {
+        "id": "12656d12737d7109",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Country",
+        "func": "global.set(\"country\",msg.location.country)\nmsg.payload=msg.location.country\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3640,
+        "y": 1220,
+        "wires": [
+            [
+                "c1bb389ea1910a01"
+            ]
+        ]
+    },
+    {
+        "id": "bef2ae71fec508a9",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Atmospheric Pressure",
+        "func": "global.set(\"pressure_sea_level\",msg.payload.pressure)\nmsg.payload=msg.payload.pressure+\" hPa\"\nif (msg.data.main.grnd_level!= undefined){\nglobal.set(\"pressure_grnd_level\",msg.data.main.grnd_level)\nmsg.payload=msg.data.main.grnd_level+\" hPa\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3680,
+        "y": 1540,
+        "wires": [
+            [
+                "67879c8c9242d18f"
+            ]
+        ]
+    },
+    {
+        "id": "499a033e3f4bd7f7",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Wind Speed",
+        "func": "global.set(\"windspeed\",msg.payload.windspeed)\nmsg.payload=msg.payload.windspeed\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3650,
+        "y": 1620,
+        "wires": [
+            [
+                "4f17f69a3fdcf54c"
+            ]
+        ]
+    },
+    {
+        "id": "64de9e90d732dd5b",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Wind Angle",
+        "func": "global.set(\"winddirection\",msg.payload.winddirection)\nmsg.payload=msg.payload.winddirection\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3650,
+        "y": 1700,
+        "wires": [
+            [
+                "35c08fee6cdd0ae0"
+            ]
+        ]
+    },
+    {
+        "id": "d33998d30ef158ea",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Clouds",
+        "func": "global.set(\"clouds\",msg.payload.clouds)\nmsg.payload=msg.payload.clouds\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3640,
+        "y": 1800,
+        "wires": [
+            [
+                "b5692a496b26acb5"
+            ]
+        ]
+    },
+    {
+        "id": "848647eae01f3764",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Sun Rise",
+        "func": "var timezone=msg.data.timezone\nglobal.set(\"timezone\",timezone)\nvar sunrise=msg.payload.sunrise\nvar actualsunrise=new Date((timezone+sunrise)*1000)\nvar sunriseinlocal=(actualsunrise.toUTCString()).replace(\"GMT\",\"\")\nglobal.set(\"sunrise\",sunriseinlocal)\nmsg.payload=sunrise*1000;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3640,
+        "y": 1900,
+        "wires": [
+            [
+                "70f1827b16f39ed7",
+                "af0a22903cede505"
+            ]
+        ]
+    },
+    {
+        "id": "2ee4cd37cb700215",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Sun Set",
+        "func": "var timezone=global.get(\"timezone\")\nvar sunset=msg.payload.sunset\nvar actualsunset=new Date((timezone+sunset)*1000)\nvar sunsetinlocal=(actualsunset.toUTCString()).replace(\"GMT\",\"\")\nglobal.set(\"sunset\",sunsetinlocal)\nmsg.payload=sunset*1000;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3640,
+        "y": 2040,
+        "wires": [
+            [
+                "af02c8cab24a77a4",
+                "fd95a8cad4ec4eac"
+            ]
+        ]
+    },
+    {
+        "id": "0f26b18503c1d4a0",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Last Measured Time",
+        "func": "var timezone=global.get(\"timezone\")\nvar lastmeasuredtime=msg.data.dt\nvar actuallastmeasuredtime=new Date((timezone+lastmeasuredtime)*1000)\nvar lastmeasuredtimeinlocal=(actuallastmeasuredtime.toUTCString()).replace(\"GMT\",\"\")\nglobal.set(\"lastmeasuredtime\",lastmeasuredtimeinlocal)\nmsg.payload=lastmeasuredtimeinlocal;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3680,
+        "y": 2200,
+        "wires": [
+            [
+                "5c411bbaf8a22ecf"
+            ]
+        ]
+    },
+    {
+        "id": "b5692a496b26acb5",
+        "type": "ui_gauge",
+        "z": "2e1b0f89c3124453",
+        "name": "Clouds",
+        "group": "94b5423573981139",
+        "order": 37,
+        "width": 3,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Clouds",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff0000",
+            "#e6e600",
+            "#00f000"
+        ],
+        "seg1": "50",
+        "seg2": "80",
+        "className": "",
+        "x": 4100,
+        "y": 1800,
+        "wires": []
+    },
+    {
+        "id": "35c08fee6cdd0ae0",
+        "type": "ui_gauge",
+        "z": "2e1b0f89c3124453",
+        "name": "Wind Angle",
+        "group": "94b5423573981139",
+        "order": 43,
+        "width": 2,
+        "height": 2,
+        "gtype": "compass",
+        "title": "",
+        "label": "°",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "360",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 4110,
+        "y": 1700,
+        "wires": []
+    },
+    {
+        "id": "5c411bbaf8a22ecf",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "87ce0483c5b4170e",
+        "order": 42,
+        "width": 7,
+        "height": 1,
+        "name": "Last Measured Time",
+        "label": "Weather was last seen at",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 4140,
+        "y": 2200,
+        "wires": []
+    },
+    {
+        "id": "70724d1be5cf8401",
+        "type": "debug",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3290,
+        "y": 1600,
+        "wires": []
+    },
+    {
+        "id": "fde70ed9293673f0",
+        "type": "openweathermap in",
+        "z": "2e1b0f89c3124453",
+        "name": "OpenWeather",
+        "wtype": "current",
+        "lon": "80.139742",
+        "lat": "12.948048",
+        "city": "",
+        "country": "",
+        "language": "en",
+        "x": 3290,
+        "y": 1500,
+        "wires": [
+            [
+                "70724d1be5cf8401",
+                "a37c3fed30db49e5",
+                "775684d3d46b14a3",
+                "576d2ed1f370b079",
+                "87c7e7ebe0a42f74",
+                "3153ed32fe768be5",
+                "12656d12737d7109",
+                "bef2ae71fec508a9",
+                "499a033e3f4bd7f7",
+                "64de9e90d732dd5b",
+                "d33998d30ef158ea",
+                "848647eae01f3764",
+                "2ee4cd37cb700215",
+                "0f26b18503c1d4a0",
+                "191373b04940cce1",
+                "23c25f7cd6de014f"
+            ]
+        ]
+    },
+    {
+        "id": "191373b04940cce1",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Weather Icon",
+        "func": "global.set(\"weathericon\",msg.payload.icon)\nmsg.payload=\"wi-owm-\"+msg.payload.icon\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3650,
+        "y": 1460,
+        "wires": [
+            [
+                "8b06088ead81952d"
+            ]
+        ]
+    },
+    {
+        "id": "8b06088ead81952d",
+        "type": "ui_template",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "name": "Weather Icon",
+        "order": 19,
+        "width": 2,
+        "height": 2,
+        "format": "<div style=\"display: flex;height: 100%;justify-content: center;align-items: center;\">\n<i class=\"fa-4x wi {{msg.payload}}\"></i>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 4110,
+        "y": 1460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eb7e9771f03c1cdf",
+        "type": "ui_widget_thermometer",
+        "z": "2e1b0f89c3124453",
+        "group": "87ce0483c5b4170e",
+        "order": 8,
+        "width": 3,
+        "height": 6,
+        "name": "Feels Like",
+        "title": "Feels Like",
+        "colorTop": "#ff0000",
+        "colorMiddle": "#e66400",
+        "colorBottom": "#e6e600",
+        "unit": "°C",
+        "scale": "normal",
+        "minTemp": 0,
+        "maxTemp": 100,
+        "x": 4110,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "1ebea7002f797e2a",
+        "type": "ui_led",
+        "z": "2e1b0f89c3124453",
+        "order": 2,
+        "group": "87ce0483c5b4170e",
+        "width": 4,
+        "height": 1,
+        "label": "Water Level",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "Water Level in the tank is below 50%",
+                "valueType": "str"
+            },
+            {
+                "color": "#008000",
+                "value": "Water level in the tank is above 50%",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Water Level",
+        "x": 4110,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "fb8b39d4bd05440f",
+        "type": "ui_level",
+        "z": "2e1b0f89c3124453",
+        "group": "87ce0483c5b4170e",
+        "order": 10,
+        "width": 4,
+        "height": 1,
+        "name": "pHlevel",
+        "label": "pH Level",
+        "colorHi": "#320096",
+        "colorWarn": "#00f000",
+        "colorNormal": "#ff0000",
+        "colorOff": "#595959",
+        "min": 0,
+        "max": "14",
+        "segWarn": "5",
+        "segHigh": "10",
+        "unit": "",
+        "layout": "sh",
+        "channelA": "",
+        "channelB": "",
+        "decimals": 0,
+        "animations": "reactive",
+        "shape": "3",
+        "colorschema": "rainbow",
+        "textoptions": "custom",
+        "colorText": "#eeeeee",
+        "fontLabel": "",
+        "fontValue": "",
+        "fontSmall": "",
+        "colorFromTheme": true,
+        "textAnimations": true,
+        "hideValue": false,
+        "tickmode": "auto",
+        "peakmode": false,
+        "property": "payload",
+        "peaktime": 3000,
+        "x": 4100,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "cbe4f1028178747e",
+        "type": "ui_artlessgauge",
+        "z": "2e1b0f89c3124453",
+        "group": "87ce0483c5b4170e",
+        "order": 15,
+        "width": 4,
+        "height": 3,
+        "name": "Gas Particles",
+        "icon": "",
+        "label": "Gas Particles",
+        "unit": "ppm",
+        "layout": "radial",
+        "decimals": 0,
+        "differential": false,
+        "minmax": true,
+        "colorTrack": "#555555",
+        "style": "",
+        "colorFromTheme": true,
+        "property": "payload",
+        "secondary": "secondary",
+        "inline": false,
+        "animate": true,
+        "sectors": [
+            {
+                "val": 0,
+                "col": "#00f000",
+                "t": "min",
+                "dot": 0
+            },
+            {
+                "val": 180,
+                "col": "#e6e600",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 350,
+                "col": "#ff0000",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 1000,
+                "col": "#ff0000",
+                "t": "max",
+                "dot": 0
+            }
+        ],
+        "lineWidth": "5",
+        "bgcolorFromTheme": true,
+        "diffCenter": "",
+        "x": 4110,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "3cd6db31022a521f",
+        "type": "ui_artlessgauge",
+        "z": "2e1b0f89c3124453",
+        "group": "87ce0483c5b4170e",
+        "order": 33,
+        "width": 3,
+        "height": 3,
+        "name": "Nitrogen",
+        "icon": "",
+        "label": "Nitrogen",
+        "unit": "mg/kg",
+        "layout": "radial",
+        "decimals": 0,
+        "differential": false,
+        "minmax": false,
+        "colorTrack": "#555555",
+        "style": "",
+        "colorFromTheme": true,
+        "property": "payload",
+        "secondary": "secondary",
+        "inline": false,
+        "animate": true,
+        "sectors": [
+            {
+                "val": 0,
+                "col": "#ff0000",
+                "t": "min",
+                "dot": 0
+            },
+            {
+                "val": 10,
+                "col": "#00f000",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 50,
+                "col": "#ff0000",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 500,
+                "col": "#ff0000",
+                "t": "max",
+                "dot": 0
+            }
+        ],
+        "lineWidth": "5",
+        "bgcolorFromTheme": true,
+        "diffCenter": "",
+        "x": 4100,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "af02c8cab24a77a4",
+        "type": "ui_clock",
+        "z": "2e1b0f89c3124453",
+        "name": "Sun Set",
+        "group": "94b5423573981139",
+        "order": 23,
+        "width": 3,
+        "height": 1,
+        "x": 4100,
+        "y": 2020,
+        "wires": []
+    },
+    {
+        "id": "a379d6b56229b0bc",
+        "type": "ui_gauge",
+        "z": "2e1b0f89c3124453",
+        "name": "Humidity",
+        "group": "87ce0483c5b4170e",
+        "order": 25,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Humidity",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff0000",
+            "#e6e600",
+            "#00f000"
+        ],
+        "seg1": "50",
+        "seg2": "80",
+        "className": "",
+        "x": 4100,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "4cd268e55e024810",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "87ce0483c5b4170e",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "Water Level",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-right",
+        "className": "",
+        "x": 4110,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "4f17f69a3fdcf54c",
+        "type": "ui_artlessgauge",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "order": 40,
+        "width": 3,
+        "height": 3,
+        "name": "Wind Speed",
+        "icon": "",
+        "label": "Wind Speed",
+        "unit": "m/s",
+        "layout": "radial",
+        "decimals": 0,
+        "differential": false,
+        "minmax": false,
+        "colorTrack": "#555555",
+        "style": "",
+        "colorFromTheme": true,
+        "property": "payload",
+        "secondary": "secondary",
+        "inline": false,
+        "animate": true,
+        "sectors": [
+            {
+                "val": 0,
+                "col": "#00f000",
+                "t": "min",
+                "dot": 0
+            },
+            {
+                "val": 8,
+                "col": "#e6e600",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 11,
+                "col": "#e66400",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 17,
+                "col": "#ff0000",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 25,
+                "col": "#fa32c8",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 100,
+                "col": "#fa32c8",
+                "t": "max",
+                "dot": 0
+            }
+        ],
+        "lineWidth": "5",
+        "bgcolorFromTheme": true,
+        "diffCenter": "",
+        "x": 4110,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "90fab0d1c31aa6d4",
+        "type": "ui_artlessgauge",
+        "z": "2e1b0f89c3124453",
+        "group": "87ce0483c5b4170e",
+        "order": 35,
+        "width": 3,
+        "height": 3,
+        "name": "Phosphorous",
+        "icon": "",
+        "label": "Phosphorous",
+        "unit": "mg/kg",
+        "layout": "radial",
+        "decimals": 0,
+        "differential": false,
+        "minmax": false,
+        "colorTrack": "#555555",
+        "style": "",
+        "colorFromTheme": true,
+        "property": "payload",
+        "secondary": "secondary",
+        "inline": false,
+        "animate": true,
+        "sectors": [
+            {
+                "val": 0,
+                "col": "#ff0000",
+                "t": "min",
+                "dot": 0
+            },
+            {
+                "val": 16,
+                "col": "#00f000",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 45,
+                "col": "#ff0000",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 500,
+                "col": "#ff0000",
+                "t": "max",
+                "dot": 0
+            }
+        ],
+        "lineWidth": "5",
+        "bgcolorFromTheme": true,
+        "diffCenter": "",
+        "x": 4110,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "f3920f87fca46866",
+        "type": "ui_artlessgauge",
+        "z": "2e1b0f89c3124453",
+        "group": "87ce0483c5b4170e",
+        "order": 37,
+        "width": 3,
+        "height": 3,
+        "name": "Potassium",
+        "icon": "",
+        "label": "Potassium",
+        "unit": "mg/kg",
+        "layout": "radial",
+        "decimals": 0,
+        "differential": false,
+        "minmax": false,
+        "colorTrack": "#555555",
+        "style": "",
+        "colorFromTheme": true,
+        "property": "payload",
+        "secondary": "secondary",
+        "inline": false,
+        "animate": true,
+        "sectors": [
+            {
+                "val": 0,
+                "col": "#ff0000",
+                "t": "min",
+                "dot": 0
+            },
+            {
+                "val": 120,
+                "col": "#00f000",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 240,
+                "col": "#ff0000",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 500,
+                "col": "#ff0000",
+                "t": "max",
+                "dot": 0
+            }
+        ],
+        "lineWidth": "5",
+        "bgcolorFromTheme": true,
+        "diffCenter": "",
+        "x": 4110,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "740fa635ca8c2c28",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "order": 38,
+        "width": 3,
+        "height": 1,
+        "name": "Rain",
+        "label": "Rain",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 4090,
+        "y": 2300,
+        "wires": []
+    },
+    {
+        "id": "23c25f7cd6de014f",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Rain",
+        "func": "if(msg[\"data\"][\"rain\"]?.[\"3h\"]!=undefined){\nrain3h=msg[\"data\"][\"rain\"][\"3h\"]+\"mm (3 hours)\"\nglobal.set(\"rain3h\",rain3h)\n}\nelse if(msg[\"data\"][\"rain\"]?.[\"1h\"]!=undefined){\nrain1h=msg[\"data\"][\"rain\"][\"1h\"]+\"mm (1 hour)\"\nglobal.set(\"rain1h\",rain1h)\n}\nelse{\nmsg.payload=\"0mm\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3630,
+        "y": 2300,
+        "wires": [
+            [
+                "740fa635ca8c2c28"
+            ]
+        ]
+    },
+    {
+        "id": "4e61c14610578cd2",
+        "type": "ui_template",
+        "z": "2e1b0f89c3124453",
+        "group": "87ce0483c5b4170e",
+        "name": "Humidity Icon",
+        "order": 22,
+        "width": 4,
+        "height": 1,
+        "format": "<div style=\"display: flex;height: 100%;justify-content: center;align-items: center;\">\n<i class=\"fa fa-tint\" aria-hidden=\"true\"></i>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 4300,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4cdf1c7aebb3c70f",
+        "type": "ui_template",
+        "z": "2e1b0f89c3124453",
+        "group": "87ce0483c5b4170e",
+        "name": "Soil Moisture Icon",
+        "order": 24,
+        "width": 4,
+        "height": 1,
+        "format": "<div style=\"display: flex;height: 100%;justify-content: center;align-items: center;\">\n<i class=\"fa fa-leaf\" aria-hidden=\"true\"></i>\n<i class=\"fa fa-tint\" aria-hidden=\"true\"></i>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 4330,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c98cb8070d388019",
+        "type": "ui_template",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "name": "Wind Speed Icon",
+        "order": 35,
+        "width": 1,
+        "height": 1,
+        "format": "<div style=\"display: flex;height: 100%;justify-content: center;align-items: center;\">\n<i class=\"fa-8x wi \twi-darksky-wind\"></i>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 4370,
+        "y": 1620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0cfddef9bfcf9fd2",
+        "type": "ui_template",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "name": "Sun Set Icon",
+        "order": 17,
+        "width": 1,
+        "height": 1,
+        "format": "<div style=\"display: flex;height: 100%;justify-content: center;align-items: center;\">\n<i class=\"fa fa-sun-o\" aria-hidden=\"true\"></i>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 4350,
+        "y": 2060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "60f4d43afc3f2c7c",
+        "type": "ui_template",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "name": "Sun Rise Icon",
+        "order": 14,
+        "width": 1,
+        "height": 1,
+        "format": "<div style=\"display: flex;height: 100%;justify-content: center;align-items: center;\">\n<i class=\"fa fa-sun-o\" aria-hidden=\"true\"></i>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 4360,
+        "y": 1900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "41bd28178116ec71",
+        "type": "ui_template",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "name": "Clouds Icon",
+        "order": 31,
+        "width": 1,
+        "height": 1,
+        "format": "<div style=\"display: flex;height: 100%;justify-content: center;align-items: center;\">\n<i class=\"fa fa-cloud\" aria-hidden=\"true\"></i>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 4350,
+        "y": 1780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "35b046f1141fd135",
+        "type": "ui_template",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "name": "Rain Icon",
+        "order": 33,
+        "width": 1,
+        "height": 1,
+        "format": "<div style=\"display: flex;height: 100%;justify-content: center;align-items: center;\">\n<i class=\"fa fa-cloud\" aria-hidden=\"true\"></i>\n<i class=\"fa fa-tint\" aria-hidden=\"true\"></i>\n<i class=\"fa-2x wi wi-wind wi-wind-beaufort-1\"></i>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 4340,
+        "y": 2300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6664a6071bd58211",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "order": 29,
+        "width": 4,
+        "height": 1,
+        "name": "Sun Set",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 4100,
+        "y": 2100,
+        "wires": []
+    },
+    {
+        "id": "c0150df99c05361e",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "order": 28,
+        "width": 4,
+        "height": 1,
+        "name": "Sun Rise",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 4100,
+        "y": 1940,
+        "wires": []
+    },
+    {
+        "id": "65455d17ed7f298d",
+        "type": "ui_gauge",
+        "z": "2e1b0f89c3124453",
+        "name": "Soil Moisture",
+        "group": "87ce0483c5b4170e",
+        "order": 27,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Soil Moisture",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff0000",
+            "#00f000",
+            "#ff0000"
+        ],
+        "seg1": "25",
+        "seg2": "50",
+        "className": "",
+        "x": 4110,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "cf6300ef844b29a4",
+        "type": "ui_widget_thermometer",
+        "z": "2e1b0f89c3124453",
+        "group": "87ce0483c5b4170e",
+        "order": 6,
+        "width": 3,
+        "height": 6,
+        "name": "Temperature",
+        "title": "Temperature",
+        "colorTop": "#ff0000",
+        "colorMiddle": "#e66400",
+        "colorBottom": "#e6e600",
+        "unit": "°C",
+        "scale": "normal",
+        "minTemp": 0,
+        "maxTemp": 100,
+        "x": 4110,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "e240b7ed83bf3a9c",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Temperature",
+        "func": "global.set(\"temperature\",msg.payload.temperature)\nmsg.payload=Math.round(msg.payload.temperature)\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3650,
+        "y": 20,
+        "wires": [
+            [
+                "cf6300ef844b29a4"
+            ]
+        ]
+    },
+    {
+        "id": "70f1827b16f39ed7",
+        "type": "ui_clock",
+        "z": "2e1b0f89c3124453",
+        "name": "Sun Rise",
+        "group": "94b5423573981139",
+        "order": 21,
+        "width": 3,
+        "height": 1,
+        "x": 4100,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "6136320288fc1bb3",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "87ce0483c5b4170e",
+        "order": 31,
+        "width": 2,
+        "height": 1,
+        "name": "NPK",
+        "label": "NPK Values",
+        "format": "{{msg.payload}}",
+        "layout": "row-right",
+        "className": "",
+        "x": 4290,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "67879c8c9242d18f",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "order": 6,
+        "width": 6,
+        "height": 1,
+        "name": "Atmospheric Pressure",
+        "label": "Atmospheric Pressure",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 4140,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "727f7ef614af3655",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "order": 16,
+        "width": 1,
+        "height": 1,
+        "name": "Sun Set",
+        "label": "Sun Set",
+        "format": "",
+        "layout": "row-left",
+        "className": "",
+        "x": 4600,
+        "y": 2060,
+        "wires": []
+    },
+    {
+        "id": "34ed765c06381aa7",
+        "type": "ui_text",
+        "z": "2e1b0f89c3124453",
+        "group": "94b5423573981139",
+        "order": 13,
+        "width": 1,
+        "height": 1,
+        "name": "Sun Rise",
+        "label": "Sun Rise",
+        "format": "",
+        "layout": "row-left",
+        "className": "",
+        "x": 4600,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "aeef0f3d70dd55a8",
+        "type": "inject",
+        "z": "2e1b0f89c3124453",
+        "name": "Current Time",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 3320,
+        "y": 2500,
+        "wires": [
+            [
+                "35f1152b1f2635df"
+            ]
+        ]
+    },
+    {
+        "id": "7fd33727d77d671e",
+        "type": "http in",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "url": "command",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 3300,
+        "y": 2800,
+        "wires": [
+            [
+                "8d1200f29104638a"
+            ]
+        ]
+    },
+    {
+        "id": "bc1f6193a2255cf3",
+        "type": "http response",
+        "z": "2e1b0f89c3124453",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 4060,
+        "y": 2800,
+        "wires": []
+    },
+    {
+        "id": "8d1200f29104638a",
+        "type": "function",
+        "z": "2e1b0f89c3124453",
+        "name": "Motor",
+        "func": "msg.payload = {'Motor':global.get('Motor')}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3590,
+        "y": 2800,
+        "wires": [
+            [
+                "bc1f6193a2255cf3"
+            ]
+        ]
+    },
+    {
+        "id": "6dd65539aad98b2f",
+        "type": "change",
+        "z": "2e1b0f89c3124453",
+        "name": "Motor",
+        "rules": [
+            {
+                "t": "set",
+                "p": "Motor",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3610,
+        "y": 2640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "af0a22903cede505",
+        "type": "change",
+        "z": "2e1b0f89c3124453",
+        "name": "Sun Rise",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "sunrise",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3840,
+        "y": 1940,
+        "wires": [
+            [
+                "c0150df99c05361e"
+            ]
+        ]
+    },
+    {
+        "id": "fd95a8cad4ec4eac",
+        "type": "change",
+        "z": "2e1b0f89c3124453",
+        "name": "Sun Set",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "sunset",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3860,
+        "y": 2100,
+        "wires": [
+            [
+                "6664a6071bd58211"
+            ]
+        ]
+    },
+    {
+        "id": "ccb7369f4828cdf7",
+        "type": "comment",
+        "z": "2e1b0f89c3124453",
+        "name": "SPRINT 2",
+        "info": "",
+        "x": 3260,
+        "y": 2940,
+        "wires": []
+    },
+    {
+        "id": "b8fa9d79d9756da5",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 1,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "e68728e3b20eef8b",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 3,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "efac407e60844227",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 4,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "406538632a67960d",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 6,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "8f4af248b9c6ba49",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 7,
+        "width": 19,
+        "height": 1
+    },
+    {
+        "id": "804b9f0b61f498bc",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 8,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "e85efd37aef2fe6b",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 11,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "dd3c8189d5274e49",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 12,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "de13d119ea5ce88a",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 15,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "0b6f6f5965dbdcf5",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 16,
+        "width": 19,
+        "height": 1
+    },
+    {
+        "id": "04f906178c161c27",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 17,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "c89bd3bff941a2a4",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "24940c4c2bc5b11a",
+        "order": 19,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "c46ed8b958077ecd",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "9738ddbf1cb6ba73",
+        "order": 1,
+        "width": 20,
+        "height": 1
+    },
+    {
+        "id": "c7fcee0f9fa5b09a",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "9738ddbf1cb6ba73",
+        "order": 2,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "596c7348e4f0cd86",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "9738ddbf1cb6ba73",
+        "order": 4,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "d7faa714997813f7",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "9738ddbf1cb6ba73",
+        "order": 5,
+        "width": 20,
+        "height": 1
+    },
+    {
+        "id": "33de6eccf997914d",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "9738ddbf1cb6ba73",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "363f8432e5cceb33",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "9738ddbf1cb6ba73",
+        "order": 8,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "73ee9e400cf8bbde",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 1,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "b31982dcd91e3ac7",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 4,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "7c04343286c2e055",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 5,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "eff28bfe846299f9",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 7,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "d6f529454f1d8aa3",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 8,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "d3a39c9de827847c",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 11,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "ac8ca184d1be6cde",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 12,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "4f7f2535552a79f8",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 14,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "bcce651db3900ea1",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 15,
+        "width": 20,
+        "height": 1
+    },
+    {
+        "id": "0c20c048dc7de283",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 16,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "508ea66ee0a7b44f",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "952cc8d0efe668b6",
+        "order": 18,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "b7e0ad98cd169ce3",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 1,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "183f8a398042dd1a",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 3,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "2145765d0f314389",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 4,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "b25796e3bbd3b5f0",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 6,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "d660a7b53f9710c7",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 7,
+        "width": 20,
+        "height": 1
+    },
+    {
+        "id": "c6b48f671af1e5d2",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 8,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "bd69b764169db878",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 10,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "e37f8ac0f0503ea4",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 11,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "9b15ed2be4f7df6f",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 13,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "0a732a1999578b4f",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 14,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "25887823b5d20116",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 16,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "876f7b3d44a8922c",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 17,
+        "width": 20,
+        "height": 1
+    },
+    {
+        "id": "5d405525004834a9",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 18,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "50c93df5ae24ed23",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "ff7a2dc9f08c1b69",
+        "order": 20,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "3d50e667145f0f60",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "0d8d36b80172a1af",
+        "order": 1,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "0ea461be8820ece5",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "0d8d36b80172a1af",
+        "order": 4,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "d773fecce40bb8b8",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "0d8d36b80172a1af",
+        "order": 5,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "40820bc3db82a67a",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "0d8d36b80172a1af",
+        "order": 8,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "89f7ab14db9809e7",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "0d8d36b80172a1af",
+        "order": 9,
+        "width": 20,
+        "height": 1
+    },
+    {
+        "id": "3b19655ba4107cac",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "0d8d36b80172a1af",
+        "order": 10,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "bca8d248e0fb7599",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "0d8d36b80172a1af",
+        "order": 12,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "7f842882f43cd1fd",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "0d8d36b80172a1af",
+        "order": 14,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "ca00a9d0f1d2e193",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 2,
+        "width": 11,
+        "height": 1
+    },
+    {
+        "id": "21c4f7b4454e852b",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 7,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "de3cf2fd45cefa14",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 12,
+        "width": 12,
+        "height": 1
+    },
+    {
+        "id": "f9dc804410648f8d",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 15,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "9fcd2e6c24fbab6d",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 18,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "7e7e439c117765e2",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 20,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "4697f53d8b48be6d",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 22,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "868033e755c9945f",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 24,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "a0014452d4e5c5eb",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 27,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "7c429d52c84763c9",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 30,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "48122f07ecce341a",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 32,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "8356630357c5b1a5",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 34,
+        "width": 12,
+        "height": 1
+    },
+    {
+        "id": "0cf3b88437f1281a",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 36,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "7f1c475491493244",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 39,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "352e0e04a290d9a1",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 41,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "84801047881bbc81",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 42,
+        "width": 12,
+        "height": 1
+    },
+    {
+        "id": "707cc3e3ae600368",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "94b5423573981139",
+        "order": 44,
+        "width": 12,
+        "height": 1
+    },
+    {
+        "id": "6558db167c83c36b",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 1,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "cf31ff1b4406370a",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 3,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "cfd24e060dd45943",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 5,
+        "width": 13,
+        "height": 1
+    },
+    {
+        "id": "165644d7c6b97c48",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 7,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "5de6eee84877f058",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 9,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "945b7269cfb65009",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 11,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "809d3cb83acace18",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 12,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "99af28b3673315e7",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 13,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "8e08e44a71f381dd",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 14,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "7e04f1ef96195130",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 16,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "2ef3ae8742f6ef6c",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 17,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "2cfebb38c0547077",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 18,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "6828d3057a215e2f",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 19,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "a6af15dbb4492667",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 20,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "e688155e087dd6f0",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 21,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "3b73e96e64aebd08",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 23,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "1bd2837a739debb9",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 26,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "6a5e90aac21b1b08",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 28,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "f08979277a24c9b4",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 29,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "e550703777461e4e",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 30,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "13565a227ef69c4d",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 32,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "7a611582c3528929",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 34,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "6a1027b040aadaaf",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 36,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "152abc66e6aad10c",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 38,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "1f0b66ed509f9297",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 39,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "ab0889c6229051b7",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 40,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "6772c914f66ea813",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 41,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "8a44d639762264f9",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "87ce0483c5b4170e",
+        "order": 43,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "c1cd046c8ce209c1",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "96de8fbc79c9593c",
+        "order": 1,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "36f53e601365da5d",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "96de8fbc79c9593c",
+        "order": 3,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "3f210fdde6755993",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "96de8fbc79c9593c",
+        "order": 4,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "f65afa59e099492b",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "96de8fbc79c9593c",
+        "order": 5,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "fa0a331426df9d15",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "96de8fbc79c9593c",
+        "order": 7,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "c9cfbcdd85d8978c",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "96de8fbc79c9593c",
+        "order": 8,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "55dea4f9200fa6eb",
+        "type": "ui_spacer",
+        "z": "2e1b0f89c3124453",
+        "name": "spacer",
+        "group": "96de8fbc79c9593c",
+        "order": 10,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "9738ddbf1cb6ba73",
+        "type": "ui_group",
+        "name": "Home",
+        "tab": "93eea1323c8a8beb",
+        "order": 1,
+        "disp": false,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "0d8d36b80172a1af",
+        "type": "ui_group",
+        "name": "Login",
+        "tab": "2bb0afb2e23f66c8",
+        "order": 1,
+        "disp": false,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "952cc8d0efe668b6",
+        "type": "ui_group",
+        "name": "Register",
+        "tab": "7c38a4b2f2651bd6",
+        "order": 1,
+        "disp": false,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ff7a2dc9f08c1b69",
+        "type": "ui_group",
+        "name": "OTP",
+        "tab": "254e31c23b4efb8b",
+        "order": 1,
+        "disp": false,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "94b5423573981139",
+        "type": "ui_group",
+        "name": "Dashboard ",
+        "tab": "1a711baafefc3263",
+        "order": 1,
+        "disp": false,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "583f978ccd9248eb",
+        "type": "twilio-api",
+        "name": "twillio otp",
+        "sid": "ACd95a7eb4ad4b0ebe80ee7495fc558bd5",
+        "from": "+18318511955"
+    },
+    {
+        "id": "24940c4c2bc5b11a",
+        "type": "ui_group",
+        "name": "Forgot Password",
+        "tab": "79575bdbc9a23bb5",
+        "order": 2,
+        "disp": false,
+        "width": "19",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "96de8fbc79c9593c",
+        "type": "ui_group",
+        "name": "Dashboard 3",
+        "tab": "1a711baafefc3263",
+        "order": 3,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c72cf225c5de89db",
+        "type": "ibmiot",
+        "name": "IBMIOT node API key",
+        "keepalive": "60",
+        "serverName": "qoznfd.messaging.internetofthings.ibmcloud.com",
+        "cleansession": true,
+        "appId": "",
+        "shared": false
+    },
+    {
+        "id": "87ce0483c5b4170e",
+        "type": "ui_group",
+        "name": "Dashboard 2",
+        "tab": "1a711baafefc3263",
+        "order": 2,
+        "disp": false,
+        "width": 13,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "93eea1323c8a8beb",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": true
+    },
+    {
+        "id": "2bb0afb2e23f66c8",
+        "type": "ui_tab",
+        "name": "Login",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": true
+    },
+    {
+        "id": "7c38a4b2f2651bd6",
+        "type": "ui_tab",
+        "name": "Register",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": true
+    },
+    {
+        "id": "254e31c23b4efb8b",
+        "type": "ui_tab",
+        "name": "OTP",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": true
+    },
+    {
+        "id": "1a711baafefc3263",
+        "type": "ui_tab",
+        "name": "Dashboard ",
+        "icon": "dashboard",
+        "order": 6,
+        "disabled": false,
+        "hidden": true
+    },
+    {
+        "id": "79575bdbc9a23bb5",
+        "type": "ui_tab",
+        "name": "Forgot Password",
+        "icon": "dashboard",
+        "order": 5,
+        "disabled": false,
+        "hidden": true
+    }
+]
