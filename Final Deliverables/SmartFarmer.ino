@@ -9,7 +9,7 @@
 
 DHT dht(DHTPIN,DHTTYPE);// creating the instance by passing pin and typr of dht connected
 
-String serverName = "http://159.122.186.173:30699/command";
+String serverName = "http://169.51.204.248:31732/command";//server changed after new cluster
 unsigned long lastTime = 0;
 unsigned long timerDelay = 1000;
 String motor = "{\"Motor\":1}";
